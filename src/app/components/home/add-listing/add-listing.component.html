@@ -1,19 +1,23 @@
-<form>
+<form [formGroup]="listingForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="alterEgo">Description</label>
-        <textarea name="" id="" cols="30" rows="5" class="fill-width"></textarea>
+        <label for="Description">Description</label>
+        <p *ngIf="listingForm.controls.description.errors" class="side-by-side validation">(This field is required!)</p>
+        <textarea name="" id="Description" cols="30" rows="5" class="fill-width" formControlName="description"></textarea>
     </div>
     <div class="form-group">
-        <label for="alterEgo">Budget</label>
-        <input type="text" class="form-control" id="alterEgo">
+        <label for="Budget">Budget</label>
+        <p *ngIf="listingForm.controls.budget.errors" class="side-by-side validation">(This field is required!)</p>
+        <input type="text" class="form-control" id="Budget" formControlName="budget">
     </div>
     <div class="form-group">
-        <label for="alterEgo">Perks</label>
-        <input type="text" class="form-control" id="alterEgo">
+        <label for="Perks">Perks</label>
+        <p *ngIf="listingForm.controls.perks.errors" class="side-by-side validation">(This field is required!)</p>
+        <input type="text" class="form-control" id="Perks" formControlName="perks">
     </div>
     <div class="form-group">
-        <label for="alterEgo">Posting Requirements</label>
-        <input type="text" class="form-control" id="alterEgo">
+        <label for="Requirements">Posting Requirements</label>
+        <p *ngIf="listingForm.controls.requirements.errors" class="side-by-side validation">(This field is required!)</p>
+        <input type="text" class="form-control" id="Requirements" formControlName="requirements">
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>

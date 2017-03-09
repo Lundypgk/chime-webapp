@@ -6,3 +6,11 @@ form {
 .fill-width {
     width: 100%;
 }
+
+.side-by-side {
+    display: inline-block;
+}
+
+.validation {
+    color: red;
+}

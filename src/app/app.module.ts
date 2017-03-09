@@ -1,6 +1,7 @@
+import { ListingService } from './services/listing.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -27,10 +28,11 @@ const appRoutes : Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [ListingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

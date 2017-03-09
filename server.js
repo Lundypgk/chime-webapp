@@ -1,15 +1,19 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
+let express = require('express'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    passport = require('passport'),
+    config = require('./config/database'),
+    db;
 
-const app = express();
+let app = express();
 
-const users = require('./routes/users');
+//Import Routes
+let users = require('./routes/users'),
+    listing = require('./routes/listing');
 
 //Specifies the port number
-const port = 3000;
+let port = 3000;
 
 //CORS Middleware
 app.use(cors());
@@ -20,15 +24,29 @@ app.use(express.static(path.join(__dirname, 'public')))
 //Body Parser Middleware
 app.use(bodyParser.json());
 
-app.use('/users',users);
+//MongoDB
+let MongoClient = require('mongodb').MongoClient;
 
-//Index Route
-app.get('/',(req, res) => {
-  res.send('Invalid Endpoint');
+MongoClient.connect(config.database, (err, database) => {
+    if (err) return console.log(err)
+    db = database;
 })
 
+//Make db accessbile to routers;
+app.use(function(req, res, next) {
+    req.db = db;
+    next();
+});
+
+//Routes
+app.use('/listing', listing);
+
+//Index Route
+app.get('/', (req, res) => {
+    res.send('Invalid Endpoint');
+})
 
 //Start the server
-app.listen(port , () => {
-  console.log('Server started on port' + port);
+app.listen(port, () => {
+    console.log('Server started on port' + port);
 })
