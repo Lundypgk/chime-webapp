@@ -1,3 +1,4 @@
+import { UserLoginService } from './services/user-login.service';
 import { ListingService } from './services/listing.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -32,7 +33,7 @@ const appRoutes : Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ListingService],
+  providers: [ListingService,UserLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

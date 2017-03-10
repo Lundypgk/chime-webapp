@@ -9,7 +9,7 @@ let express = require('express'),
 let app = express();
 
 //Import Routes
-let users = require('./routes/users'),
+let login = require('./routes/login'),
     listing = require('./routes/listing');
 
 //Specifies the port number
@@ -39,6 +39,7 @@ app.use(function(req, res, next) {
 });
 
 //Routes
+app.use('/login', login);
 app.use('/listing', listing);
 
 //Index Route

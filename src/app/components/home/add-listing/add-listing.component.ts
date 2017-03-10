@@ -1,6 +1,7 @@
 import { ListingService } from './../../../services/listing.service';
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-listing',
@@ -12,7 +13,8 @@ export class AddListingComponent implements OnInit {
 
   
   constructor(private formBuilder: FormBuilder,
-              private listingService : ListingService) { }
+              private listingService : ListingService,
+              private router : Router) { }
 
   ngOnInit() {
     this.listingForm = this.formBuilder.group({
@@ -33,10 +35,13 @@ export class AddListingComponent implements OnInit {
     if(this.listingForm.valid){
        this.listingService.postListing(listing).subscribe(data => {
           if(data.success){
-            console.log("Saved into database !");
+            alert("Saved into database !");
+            
+            //Redirect to home page
+            this.router.navigate(['/']);
           }
           else{
-            console.log("Error saving into database !");
+            alert("Error saving into database !");
           }
        });
     }
