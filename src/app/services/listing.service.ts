@@ -8,6 +8,13 @@ export class ListingService {
 
   constructor(private http:Http) { }
 
+  retrieveListing(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:3000/listing/getAllListing',{ headers : headers})
+      .map(res => res.json());
+  }
+
   postListing(listing){
     let headers = new Headers();
     headers.append('Content-Type','application/json');

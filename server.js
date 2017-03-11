@@ -30,7 +30,7 @@ let MongoClient = require('mongodb').MongoClient;
 MongoClient.connect(config.database, (err, database) => {
     if (err) return console.log(err)
     db = database;
-})
+});
 
 //Make db accessbile to routers;
 app.use(function(req, res, next) {
@@ -45,9 +45,9 @@ app.use('/listing', listing);
 //Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
-})
+});
 
 //Start the server
 app.listen(port, () => {
     console.log('Server started on port' + port);
-})
+});

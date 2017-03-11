@@ -3,6 +3,26 @@ let express = require('express'),
     db,
     Listing = require('../models/listing');
 
+//Retrieve All Listing
+router.get('/getAllListing', (req, res, next) => {
+    db = req.db;
+    db.collection('listing').find().toArray().then(function(listing) {
+        //If there is such user
+        if (listing.length >= 1) {
+            res.json({
+                success: true,
+                results: listing
+            })
+        } else {
+            res.json({
+                success: false,
+                //objects: docs
+            })
+        }
+        //db.close()
+    });
+});
+
 //Add Listing Router
 router.post('/addListing', (req, res, next) => {
     db = req.db;

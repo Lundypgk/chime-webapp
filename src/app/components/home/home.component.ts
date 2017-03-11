@@ -1,3 +1,4 @@
+import { ListingService } from './../../services/listing.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  listings : any = [];
 
-  constructor() { }
+  constructor(private listingService : ListingService) { }
 
   ngOnInit() {
+    this.listingService.retrieveListing().subscribe(data => {
+          if(data.success){
+            this.listings = data.results;
+          }
+          else{
+          }
+       });
+  }
+
+  onCampaign(listing){
+    alert(listing._id);
   }
 
 }
