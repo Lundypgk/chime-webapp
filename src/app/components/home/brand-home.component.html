@@ -1,4 +1,4 @@
-<div (click)="onCampaign(listing)" *ngFor=" let listing of listings;">
+<div (click)="onListing(listing)" *ngFor=" let listing of listings;">
     <ul>
         <li [hidden]=true> {{listing._id}} </li>
         <li> {{listing.description}}</li>

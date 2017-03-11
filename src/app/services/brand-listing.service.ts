@@ -3,7 +3,7 @@ import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class ListingService {
+export class BrandListingService {
   listing : any;
 
   constructor(private http:Http) { }

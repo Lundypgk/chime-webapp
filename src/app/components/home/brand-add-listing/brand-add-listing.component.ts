@@ -1,19 +1,19 @@
-import { ListingService } from './../../../services/listing.service';
+import { BrandListingService } from './../../../services/brand-listing.service';
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-listing',
-  templateUrl: './add-listing.component.html',
-  styleUrls: ['./add-listing.component.css']
+  selector: 'app-brand-add-listing',
+  templateUrl: './brand-add-listing.component.html',
+  styleUrls: ['./brand-add-listing.component.css']
 })
-export class AddListingComponent implements OnInit {
+export class BrandAddListingComponent implements OnInit {
   listingForm: FormGroup;
 
   
   constructor(private formBuilder: FormBuilder,
-              private listingService : ListingService,
+              private listingService : BrandListingService,
               private router : Router) { }
 
   ngOnInit() {

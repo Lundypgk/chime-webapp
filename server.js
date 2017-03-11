@@ -10,7 +10,7 @@ let app = express();
 
 //Import Routes
 let login = require('./routes/login'),
-    listing = require('./routes/listing');
+    listing = require('./routes/brand-listing');
 
 //Specifies the port number
 let port = 3000;
