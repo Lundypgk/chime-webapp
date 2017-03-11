@@ -1,0 +1,49 @@
+.mlogo
+{
+        width: 140px;
+    margin: -1.5% 40% 0 auto;
+
+}
+.navbar-header
+{
+    width: 100%;
+}
+.navbar-brand
+{
+    width:88%;
+}
+
+@media only screen and (max-width: 1024px) {
+.navbar-brand
+{
+    width: 75%;
+    margin-top: -1.5%;
+}
+}
+
+
+@media only screen and (max-width: 750px) {
+.navbar-brand
+{
+    float: left;
+    margin-top: -3.5%;
+}
+.mlogo {
+    margin:1% 0px 0px 0px;
+    width:115px;
+}
+button.navbar-toggle.collapsed
+{
+        float: right;
+    margin-right: 0px;
+    border-color:#f8f8f8;
+}
+}
+
+@media only screen and (max-width: 670px) {
+.navbar-brand
+{
+ 
+    margin-top: -4.5%;
+}
+}
