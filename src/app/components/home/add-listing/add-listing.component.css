@@ -1,5 +1,5 @@
 form {
-    width: 80%;
+    width: 60%;
     margin: auto
 }
 
@@ -12,5 +12,54 @@ form {
 }
 
 .validation {
-    color: red;
+    color: #FACB1B;
+   font-weight: bold;
+   margin-bottom: 0px;
+}
+textarea#Description {
+    border-radius: 5px;
+    resize:none;
+}
+
+.form-group{
+    width:100%;
+}
+
+.form-group, .btn-success
+{
+    float:left;
+    
+}
+
+.form-group-half{
+    margin-bottom: 15px;
+    float:left;
+    width:40%;
+}
+
+.form-group-other-half {
+    margin-bottom: 15px;
+    float: left;
+    width: 50%;
+    margin-left: 10%;
+}
+
+.form-control:focus,
+.form-control-half:focus,
+.fill-width:focus {
+    border: 2px solid #FACB1B;
+    box-shadow: .1px .1px .1px #FACB1B;
+    outline: none;
+}
+
+.btn-success{
+        width: 61%;
+    margin-left: 19.5%;
+    margin-top: 2%;
+    border-radius: 20px;
+        color: #000;
+    background-color: #FACB1B;
+    border-color: #FACB1B;
+    font-weight: bold;
+
 }
