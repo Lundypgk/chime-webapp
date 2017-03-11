@@ -1,23 +1,36 @@
 <form [formGroup]="listingForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="Description">Description</label>
-        <p *ngIf="listingForm.controls.description.errors" class="side-by-side validation">(This field is required!)</p>
-        <textarea name="" id="Description" cols="30" rows="5" class="fill-width" formControlName="description"></textarea>
+        <p *ngIf="listingForm.controls.description.errors" class="side-by-side validation">*Required</p>
+        <textarea name="" id="Description" placeholder="Basic Description Of Your Brand/Company" cols="30" rows="5" class="fill-width" formControlName="description"></textarea>
     </div>
-    <div class="form-group">
-        <label for="Budget">Budget</label>
-        <p *ngIf="listingForm.controls.budget.errors" class="side-by-side validation">(This field is required!)</p>
-        <input type="text" class="form-control" id="Budget" formControlName="budget">
-    </div>
+    
     <div class="form-group">
         <label for="Perks">Perks</label>
-        <p *ngIf="listingForm.controls.perks.errors" class="side-by-side validation">(This field is required!)</p>
-        <input type="text" class="form-control" id="Perks" formControlName="perks">
+        <p *ngIf="listingForm.controls.perks.errors" class="side-by-side validation">*Required</p>
+        <input type="text" placeholder="What you would offer Ex.(20% for Burger)" class="form-control" id="Perks" formControlName="perks">
     </div>
     <div class="form-group">
         <label for="Requirements">Posting Requirements</label>
-        <p *ngIf="listingForm.controls.requirements.errors" class="side-by-side validation">(This field is required!)</p>
-        <input type="text" class="form-control" id="Requirements" formControlName="requirements">
+        <p *ngIf="listingForm.controls.requirements.errors" class="side-by-side validation">*Required</p>
+        <input type="text" placeholder="What You Require From Our Chimers Ex.(Post with our wall)" class="form-control" id="Requirements" formControlName="requirements">
     </div>
+
+    <div class="form-group-half">
+        <label for="Budget">Budget</label>
+        <p *ngIf="listingForm.controls.budget.errors" class="side-by-side validation">*Required</p>
+        <input type="text" class="form-control" placeholder="Min. $50.00" id="Budget" formControlName="budget">
+    </div>
+
+    <div class="form-group-other-half">
+        <label>Pricing:</label>
+        <p>
+           1. $0.50 for 100 followers <br /><br />
+           2. $10 (2000 followers) Cap For Influencer <br /><br />
+           3. Chimers with more than 2000 <br /> followers  will still get paid $10
+        </p>
+         </div>
+
+
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
