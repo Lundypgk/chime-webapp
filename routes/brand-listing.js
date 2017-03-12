@@ -4,10 +4,11 @@ let express = require('express'),
     Listing = require('../models/listing');
 
 //Retrieve All Listing
+//*Need to configure to retrieve only the brand's listing*
 router.get('/getAllListing', (req, res, next) => {
     db = req.db;
     db.collection('listing').find().toArray().then(function(listing) {
-        //If there is such user
+        //If there is any listing
         if (listing.length >= 1) {
             res.json({
                 success: true,
@@ -16,7 +17,6 @@ router.get('/getAllListing', (req, res, next) => {
         } else {
             res.json({
                 success: false,
-                //objects: docs
             })
         }
         //db.close()

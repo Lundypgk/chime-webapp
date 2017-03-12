@@ -17,7 +17,5 @@ export class BrandHomeDetailComponent implements OnInit {
         .subscribe(params => {
             this.id = params['id'];
         });
-        console.log(this.id);
   }
-
 }

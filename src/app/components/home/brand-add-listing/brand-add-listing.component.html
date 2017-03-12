@@ -1,10 +1,11 @@
+<app-brand-navbar></app-brand-navbar>
 <form [formGroup]="listingForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="Description">Description</label>
         <p *ngIf="listingForm.controls.description.errors" class="side-by-side validation">*Required</p>
         <textarea name="" id="Description" placeholder="Basic Description Of Your Brand/Company" cols="30" rows="5" class="fill-width" formControlName="description"></textarea>
     </div>
-    
+
     <div class="form-group">
         <label for="Perks">Perks</label>
         <p *ngIf="listingForm.controls.perks.errors" class="side-by-side validation">*Required</p>
@@ -25,11 +26,9 @@
     <div class="form-group-other-half">
         <label>Pricing:</label>
         <p>
-           1. $0.50 for 100 followers <br /><br />
-           2. $10 (2000 followers) Cap For Influencer <br /><br />
-           3. Chimers with more than 2000 <br /> followers  will still get paid $10
+            1. $0.50 for 100 followers <br /><br /> 2. $10 (2000 followers) Cap For Influencer <br /><br /> 3. Chimers with more than 2000 <br /> followers will still get paid $10
         </p>
-         </div>
+    </div>
 
 
     <button type="submit" class="btn btn-success">Submit</button>

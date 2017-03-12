@@ -11,14 +11,14 @@ export class BrandListingService {
   retrieveListing(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/listing/getAllListing',{ headers : headers})
+    return this.http.get('http://localhost:3000/brand-listing/getAllListing',{ headers : headers})
       .map(res => res.json());
   }
 
   postListing(listing){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/listing/addListing',listing,{ headers : headers})
+    return this.http.post('http://localhost:3000/brand-listing/addListing',listing,{ headers : headers})
       .map(res => res.json());
   }
 }
