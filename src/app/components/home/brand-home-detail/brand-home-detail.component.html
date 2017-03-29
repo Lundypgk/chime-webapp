@@ -1,4 +1,14 @@
 <app-brand-navbar></app-brand-navbar>
-<h1 class="col-md-4">Budget Left</h1>
-<h1 class="col-md-4">Completed</h1>
-<h1 class="col-md-4">In Progress</h1>
+<div class="col-md-4">Budget Left</div>
+<div class="col-md-4">
+    In Progress
+    <div *ngFor=" let campaignDetail of campaignDetails;">
+        <ul>
+            <li> {{campaignDetail.name}}</li>
+            <li> {{campaignDetail.url}}</li>
+            <li> {{campaignDetail.lastUpdated}}</li>
+            <button (click)="onSubmit(jobs,url.value)"> Approve </button>
+        </ul>
+    </div>
+</div>
+<div class="col-md-4">Completed</div>

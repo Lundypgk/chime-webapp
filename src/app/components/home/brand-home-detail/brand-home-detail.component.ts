@@ -1,5 +1,6 @@
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
+import { BrandListingService } from '../../../services/brand-listing.service';
 
 @Component({
   selector: 'app-brand-home-detail',
@@ -8,8 +9,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class BrandHomeDetailComponent implements OnInit {
   id : any;
+  campaignDetails = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private listingService : BrandListingService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route
@@ -17,5 +20,13 @@ export class BrandHomeDetailComponent implements OnInit {
         .subscribe(params => {
             this.id = params['id'];
         });
+    this.listingService.getCampaignDetail(this.id).subscribe(data => {
+          if(data.success){
+            this.campaignDetails = data.result;
+          }
+          else{
+            //No data
+          }
+       });
   }
 }

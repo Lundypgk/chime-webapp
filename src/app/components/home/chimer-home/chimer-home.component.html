@@ -1,5 +1,5 @@
 <app-chimer-navbar></app-chimer-navbar>
-<div *ngFor=" let listing of listings;">
+<div *ngFor=" let listing of results;">
     <ul>
         <li [hidden]=true> {{listing._id}} </li>
         <li> {{listing.description}}</li>
@@ -7,5 +7,5 @@
         <li> {{listing.perks}}</li>
         <li> {{listing.requirements}}</li>
     </ul>
-    <button> Apply Listing</button>
+    <button (click)="onListing(listing)"> Apply Listing</button>
 </div>
