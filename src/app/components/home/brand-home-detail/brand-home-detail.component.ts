@@ -29,4 +29,15 @@ export class BrandHomeDetailComponent implements OnInit {
           }
        });
   }
+
+  onApprove(data){
+    this.listingService.updateStatus(data).subscribe(data => {
+          if(data.success){
+            alert("Success");
+          }
+          else{
+            //No data
+          }
+       });
+  }
 }

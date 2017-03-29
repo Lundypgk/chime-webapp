@@ -59,11 +59,13 @@ router.get('/getCampaginDetails', (req, res, next) => {
                 _id: id
             }).toArray().then(function(result) {
                 let temp = {};
+                temp.chimerListingId = jobs[0]._id;
                 temp.name = result[0].FirstName;
                 temp.url = jobs[0].instaUrl;
                 temp.lastUpdated = jobs[0].lastUpdated;
+                temp.status = jobs[0].jobStatus;
                 tempDataArray.push(temp);
-                console.log(jobs)
+                console.log(tempDataArray)
                 res.json({
                     success: true,
                     result: tempDataArray
@@ -71,6 +73,25 @@ router.get('/getCampaginDetails', (req, res, next) => {
             })
         }
     });
+});
+
+//Update In Progress Job
+router.put('/updateStatus', (req, res, next) => {
+    db = req.db;
+    console.log(req.body);
+    let id = new ObjectID(req.body.chimerListingId);
+    db.collection('chimerListing').update({
+        _id: id
+    }, {
+        $set: {
+            jobStatus: "Completed",
+        }
+    }).then(function(result) {
+        res.json({
+            success: true,
+            results: result
+        })
+    })
 });
 
 

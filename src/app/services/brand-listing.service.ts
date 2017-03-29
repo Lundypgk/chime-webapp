@@ -33,4 +33,11 @@ export class BrandListingService {
                           search : params })
       .map(res => res.json());
     }
+
+  updateStatus(data){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.put('http://localhost:3000/brand-listing/updateStatus', data , { headers : headers})
+      .map(res => res.json());
+  }
 }
