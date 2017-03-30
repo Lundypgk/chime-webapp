@@ -1,4 +1,29 @@
 <app-brand-navbar></app-brand-navbar>
-<h1 class="col-md-4">Budget Left</h1>
-<h1 class="col-md-4">Completed</h1>
-<h1 class="col-md-4">In Progress</h1>
+<div class="col-md-4">Budget Left</div>
+<div class="col-md-4">
+    In Progress
+    <div *ngFor=" let campaignDetail of campaignDetails;">
+        <div *ngIf="campaignDetail.status == 'Approval'">
+            <ul>
+                <li [hidden]=true> {{campaignDetail.chimerListingId}} </li>
+                <li> {{campaignDetail.name}}</li>
+                <a [href]="campaignDetail.url">{{campaignDetail.url}}</a>
+                <li> {{campaignDetail.lastUpdated}}</li>
+                <button (click)="onApprove(campaignDetail)"> Approve </button>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    Completed
+    <div *ngFor=" let campaignDetail of campaignDetails;">
+        <div *ngIf="campaignDetail.status == 'Completed'">
+            <ul>
+                <li [hidden]=true> {{campaignDetail.chimerListingId}} </li>
+                <li> {{campaignDetail.name}}</li>
+                <a [href]="campaignDetail.url">{{campaignDetail.url}}</a>
+                <li> {{campaignDetail.lastUpdated}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

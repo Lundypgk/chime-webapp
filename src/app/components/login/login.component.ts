@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: [''],
-      password: ['']
+      password: [''],
+      user: ['']
        });
   }
 
@@ -28,17 +29,33 @@ export class LoginComponent implements OnInit {
       password : this.loginForm.value.password
     }
     if(this.loginForm.valid){
-       this.loginService.login(credentials).subscribe(data => {
+      console.log(this.loginForm.value.user);
+      if (this.loginForm.value.user == "chimer"){
+          this.loginService.chimerLogin(credentials).subscribe(data => {
           if(data.success){
-            alert("Login !");
-            
+            alert("Login chimer!");
+
             //Redirect to home page
-            //this.router.navigate(['/']);
+            this.router.navigate(['/chimer']);
           }
           else{
             alert("No such user");
           }
        });
+      }
+      else{
+          this.loginService.brandLogin(credentials).subscribe(data => {
+          if(data.success){
+            alert("Login brand!");
+
+            //Redirect to home page
+            this.router.navigate(['/brand']);
+          }
+          else{
+            alert("No such user");
+          }
+       });
+      }
     }
   }
 }

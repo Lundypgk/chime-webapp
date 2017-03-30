@@ -15,6 +15,7 @@ import { ChimerListingService } from './services/chimer-listing.service';
 import { UserLoginService } from './services/user-login.service';
 import { BrandListingService } from './services/brand-listing.service';
 import { ChimerNavbarComponent } from './components/chimer-navbar/chimer-navbar.component';
+import { ChimerJobComponent } from './components/home/chimer-job/chimer-job.component';
 
 const appRoutes : Routes = [
   { path:'login', component: LoginComponent},
@@ -22,7 +23,7 @@ const appRoutes : Routes = [
   { path:'brand/listing/:id', component: BrandHomeDetailComponent},
   { path:'brand/add-listing', component: BrandAddListingComponent},
   { path:'chimer', component: ChimerHomeComponent},
-  { path:'chimer/current-jobs', component: ChimerHomeComponent}
+  { path:'chimer/jobs', component: ChimerJobComponent}
 ]
 
 @NgModule({
@@ -34,7 +35,8 @@ const appRoutes : Routes = [
     BrandAddListingComponent,
     BrandHomeDetailComponent,
     ChimerHomeComponent,
-    ChimerNavbarComponent
+    ChimerNavbarComponent,
+    ChimerJobComponent
   ],
   imports: [
     BrowserModule,

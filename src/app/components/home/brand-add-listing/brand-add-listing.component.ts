@@ -38,7 +38,7 @@ export class BrandAddListingComponent implements OnInit {
             alert("Saved into database !");
             
             //Redirect to home page
-            this.router.navigate(['/']);
+            this.router.navigate(['/brand']);
           }
           else{
             alert("Error saving into database !");

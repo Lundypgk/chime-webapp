@@ -1,0 +1,35 @@
+<app-chimer-navbar></app-chimer-navbar>
+<div class="col-md-4">
+    In Progress
+    <div *ngFor=" let jobs of inProgressJobs;">
+        <div *ngIf="jobs.status == 'InProgress'">
+            <ul>
+                <li [hidden]=true> {{jobs._id}} </li>
+                <li> {{jobs.description}}</li>
+                <li> {{jobs.budget}}</li>
+                <li> {{jobs.perks}}</li>
+                <li> {{jobs.requirements}}</li>
+                <input type="text" placeholder="Instagram URL" #url>
+                <button (click)="onSubmit(jobs,url.value)"> Submit </button>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    Awaiting Approval
+    <div *ngFor=" let jobs of inProgressJobs;">
+        <div *ngIf="jobs.status == 'Approval'">
+            <ul>
+                <li [hidden]=true> {{jobs._id}} </li>
+                <li> {{jobs.description}}</li>
+                <li> {{jobs.budget}}</li>
+                <li> {{jobs.perks}}</li>
+                <li> {{jobs.requirements}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    Completed
+</div>
