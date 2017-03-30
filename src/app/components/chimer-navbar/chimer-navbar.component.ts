@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ChimerListingService } from './../../services/chimer-listing.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChimerNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private listingService : ChimerListingService,
+              private router : Router) { }
 
   ngOnInit() {
   }
 
+  onLogOut(){
+    this.listingService.logOut().subscribe(data => {
+        alert("Successully log out !");
+        this.router.navigate(['/login']);
+       });
+  }
 }

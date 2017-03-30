@@ -9,12 +9,13 @@ let express = require('express'),
     redis = require("redis"),
     redisStore = require('connect-redis')(expressSession),
     client = redis.createClient(),
+    uid = require('uid-safe'),
     db;
 
 let app = express();
 
 //Import Routes
-let login = require('./routes/login'),
+let auth = require('./routes/auth'),
     chimerListing = require('./routes/chimer-listing'),
     brandListing = require('./routes/brand-listing');
 
@@ -27,6 +28,9 @@ let port = 3000;
 
 // Express session
 app.use(expressSession({
+    // genid: function(req) {
+    //     return genuuid() // use UUIDs for session IDs
+    // },
     secret: "asdasd",
     resave: false,
     saveUninitialized: false,
@@ -65,6 +69,9 @@ MongoClient.connect(config.database, (err, database) => {
 
 client.on('ready', function() {
     console.log("Redis is ready");
+    // client.flushdb(function(err, succeeded) {
+    //     console.log(succeeded); // will be true if successfull
+    // });
 });
 
 client.on("error", function(err) {
@@ -86,37 +93,50 @@ app.use(function(req, res, next) {
 });
 
 //Routes
-// app.use('/login', login);
-app.post('/chimer', (req, res, next) => {
-    db = req.db;
-    db.collection('chimeUser').find({
-        Username: req.body.username,
-        Password: req.body.password
-    }).toArray().then(function(docs) {
-        //If there is such user
-        if (docs.length >= 1) {
-            // req.session[chimerId] = docs[0]._id;
-            // req.session.save(function(err) {
-            //     if (err)
-            //         console.log("error")
-            //     else
-            //         console.log("success");
-            // });
-            client.set("chimerId", docs[0]._id.toString());
-            // console.log(req.session);
-            res.json({
-                success: true,
-                //objects: docs
-            })
-        } else {
-            res.json({
-                success: false,
-                //objects: docs
-            })
-        }
-        //db.close()
-    });
-});
+app.use('/login', auth);
+// app.post('/chimer', (req, res, next) => {
+//     db = req.db;
+//     db.collection('chimeUser').find({
+//         Username: req.body.username,
+//         Password: req.body.password
+//     }).toArray().then(function(docs) {
+//         //If there is such user
+//         if (docs.length >= 1) {
+//             // req.session[chimerId] = docs[0]._id;
+//             // req.session.save(function(err) {
+//             //     if (err)
+//             //         console.log("error")
+//             //     else
+//             //         console.log("success");
+//             // });
+//             client.set("chimerId", docs[0]._id.toString());
+//             // console.log(req.session);
+//             res.json({
+//                 success: true,
+//                 //objects: docs
+//             })
+//         } else {
+//             res.json({
+//                 success: false,
+//                 //objects: docs
+//             })
+//         }
+//         //db.close()
+//     });
+// });
+
+// app.get('/logout', (req, res, next) => {
+//     req.client.destroy(req.sessionID, function() {
+//         req.session.destroy(function(err) {
+//             if (err) return next(err)
+//             console.log("done");
+//             console.log(req.sessionID)
+//             res.json({
+//                 result: true
+//             });
+//         });
+//     })
+// });
 
 app.use('/chimer-listing', chimerListing);
 app.use('/brand-listing', brandListing);
@@ -126,3 +146,7 @@ app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
     console.log(req.session);
 });
+
+genuuid = function() {
+    return uid.sync(18);
+};
