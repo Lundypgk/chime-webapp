@@ -9,7 +9,9 @@
         "lint": "tslint \"src/**/*.ts\"",
         "test": "ng test",
         "pree2e": "webdriver-manager update",
-        "e2e": "protractor"
+        "e2e": "protractor",
+        "preinstall": "npm install -g http-server",
+        "postinstall": "ng build --prod"
     },
     "engines": {
         "node": "6.9.5",
@@ -50,7 +52,6 @@
         "@angular/compiler-cli": "2.2.1",
         "@types/jasmine": "2.5.38",
         "@types/node": "^6.0.42",
-        "@ngtools/webpack": "1.2.13",
         "codelyzer": "~1.0.0-beta.3",
         "jasmine-core": "2.5.2",
         "jasmine-spec-reporter": "2.5.0",
@@ -68,6 +69,9 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-
+        "extract-text-webpack-plugin": "2.0.0-beta.5",
+        "webpack": "2.2.0-rc.3",
+        "@types/lodash": "4.14.50",
+        "@ngtools/webpack": "1.2.13"
     }
 }
