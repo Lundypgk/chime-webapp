@@ -1,21 +1,27 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
+
+
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+            <a class="navbar-brand"><img class="mlogo" src="assets/images/chimemaybe-black.png"></a>
+            <!--   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"><img class="mlogo" src="assets/images/chimemaybe-black.png"></a>
+-->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div id="navbar" class="collapse navbar-collapse">
+            <div id="navbar" class=" navbar-collapse navheader">
+                <!--removed collapse-->
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/chimer/jobs']" [queryParams]="{id: id}">Current Jobs</a></li>
-                    <li><a [routerLink]="['/login']">Log Out</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="impulse" [routerLink]="['/chimer/jobs']" [queryParams]="{id: id}">Jobs</a></li>
+                    <li class="tbh"><a [routerLink]="['/login']">Log Out</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

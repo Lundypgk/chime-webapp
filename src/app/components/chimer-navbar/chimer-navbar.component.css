@@ -47,4 +47,11 @@
     .navbar-brand {
         margin-top: -4.5%;
     }
+    li.tbh {
+        display: none !important;
+    }
+    .impulse {
+        float: right;
+        margin-top: -10px;
+    }
 }
