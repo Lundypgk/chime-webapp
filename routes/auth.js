@@ -13,15 +13,13 @@ router.post('/chimer', (req, res, next) => {
         //If there is such user
         if (docs.length >= 1) {
             // req.session[chimerId] = docs[0]._id;
-            req.session.id = req.sessionID;
             req.session.save(function(err) {
                 if (err)
                     console.log("error")
                 else
                     console.log("success");
             });
-            console.log(req.session.id)
-            console.log(req);
+            console.log(req.session)
             client.set("chimerId", docs[0]._id.toString());
             // console.log(req.session);
             res.json({
@@ -103,22 +101,33 @@ router.get('/test', (req, res, next) => {
 
 router.get('/test1', (req, res, next) => {
     res.json({
-        results: req
+        results: req.sessionId
     })
 });
 
 router.get('/logout', (req, res, next) => {
     let client = req.client;
-    console.log(req)
-    client.del("lkD1723L-Emydt8dqqircJsYBFU_bU49", function() {
-        req.session.destroy(function(err) {
-            if (err) return next(err)
-            console.log("done");
-            res.json({
-                result: true
-            });
-        });
-    })
+    console.log(req.session)
+
+    // client.del("lkD1723L-Emydt8dqqircJsYBFU_bU49", function() {
+    //     req.session.destroy(function(err) {
+    //         if (err) return next(err)
+    //         console.log("done");
+    //         res.json({
+    //             result: true
+    //         });
+    //     });
+    // })
+
+    // client.del('VkvI6rLaCRbpSkKPbHAYx2hX91t2ccz8', function(err, response) {
+    //     if (response == 1) {
+    //         console.log("Deleted Successfully!")
+    //     } else {
+    //         console.log("Cannot delete")
+    //         console.log(err);
+    //         console.log(response);
+    //     }
+    // })
 });
 
 module.exports = router;

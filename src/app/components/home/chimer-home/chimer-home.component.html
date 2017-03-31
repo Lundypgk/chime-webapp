@@ -1,22 +1,22 @@
 <app-chimer-navbar></app-chimer-navbar>
-<div class="div-list" *ngFor=" let listing of listings;">
+<div class="div-list" *ngFor=" let listing of results;">
 
-        <div class="div-left">
+    <div class="div-left">
         <img class="dp-list" src="assets/images/tqk.jpg">
         <label [hidden]=true> {{listing._id}} </label>
-        </div>
-        <div class="div-right read-more-wrap">
+    </div>
+    <div class="div-right read-more-wrap">
         <label>Brand Name: The Quay Kitchen</label>
         <label>Perks: <br />{{listing.perks}}</label>
         <label>Requirements: <br />{{listing.requirements}}</label>
         <input type="checkbox" class="read-more-state" id="post-1" />
         <label class="read-more-target"> Description: <br />{{listing.description}}</label>
-        <label [hidden]=true>Budget: {{listing.budget}}</label> 
-        
-        
-        <label for="post-1" class="read-more-trigger"></label>
-    <button class="button-list"> Apply Listing</button>
+        <label [hidden]=true>Budget: {{listing.budget}}</label>
 
-        </div>
+
+        <label for="post-1" class="read-more-trigger"></label>
+        <button class="button-list" (click)="onListing(listing)"> Apply Listing</button>
+
+    </div>
 
 </div>

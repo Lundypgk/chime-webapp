@@ -20,6 +20,7 @@ let auth = require('./routes/auth'),
     brandListing = require('./routes/brand-listing');
 
 //Specifies the port number
+// let port = process.env.PORT || 3000;
 let port = 3000;
 
 // Passport Authentication
@@ -32,13 +33,13 @@ app.use(expressSession({
     //     return genuuid() // use UUIDs for session IDs
     // },
     secret: "asdasd",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
         maxAge: 36000000,
         secure: false
     },
-    store: new redisStore({ host: 'localhost', port: 5000, client: client, ttl: 260 }),
+    store: new redisStore({ host: 'localhost', port: process.env.PORT || 5000, client: client, ttl: 100 }),
 }));
 // let router = express.Router();
 // app.use(router);
