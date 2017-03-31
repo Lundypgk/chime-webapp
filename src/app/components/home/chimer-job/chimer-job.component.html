@@ -32,4 +32,15 @@
 </div>
 <div class="col-md-4">
     Completed
+    <div *ngFor=" let jobs of inProgressJobs;">
+        <div *ngIf="jobs.status == 'Completed'">
+            <ul>
+                <li [hidden]=true> {{jobs._id}} </li>
+                <li> {{jobs.description}}</li>
+                <li> {{jobs.budget}}</li>
+                <li> {{jobs.perks}}</li>
+                <li> {{jobs.requirements}}</li>
+            </ul>
+        </div>
+    </div>
 </div>

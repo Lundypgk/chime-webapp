@@ -35,4 +35,9 @@ export class ChimerListingService {
     .map(res => res.json());
   }
 
+  logOut(){
+    return this.http.get('http://localhost:3000/login/logout')
+      .map(res => res.json());
+  }
+  
 }

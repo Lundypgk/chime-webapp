@@ -34,6 +34,7 @@ export class BrandHomeDetailComponent implements OnInit {
     this.listingService.updateStatus(data).subscribe(data => {
           if(data.success){
             alert("Success");
+            location.reload();
           }
           else{
             //No data

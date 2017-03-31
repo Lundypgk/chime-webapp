@@ -11,7 +11,7 @@ export class ChimerJobComponent implements OnInit {
   completedJobs : any = [];
   inProgressJobs : any = [];
 
-  constructor(private listingService : ChimerListingService,) { }
+  constructor(private listingService : ChimerListingService) { }
 
   ngOnInit() {
     this.listingService.getCurrentJob().subscribe(data => {

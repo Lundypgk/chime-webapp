@@ -15,7 +15,9 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/chimer/jobs']">Current Jobs</a></li>
-                    <li><a href="#">Log Out</a></li>
+                    <li (click)="onLogOut()">
+                        <a>Log Out</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

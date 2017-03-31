@@ -20,7 +20,7 @@ export class UserLoginService {
   // return this.http.post('http://localhost:3000/login/chimer',credentials,{ headers : headers})
   //   .map(res => res.json());
   // }
-    return this.http.post('http://localhost:3000/chimer',credentials,{ headers : headers})
+    return this.http.post('http://localhost:3000/login/chimer',credentials,{ headers : headers})
     .map(res => res.json());
   }
 }
