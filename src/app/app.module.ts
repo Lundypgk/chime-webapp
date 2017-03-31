@@ -18,6 +18,7 @@ import { ChimerNavbarComponent } from './components/chimer-navbar/chimer-navbar.
 import { ChimerJobComponent } from './components/home/chimer-job/chimer-job.component';
 
 const appRoutes : Routes = [
+  { path:'', component: LoginComponent},
   { path:'login', component: LoginComponent},
   { path:'brand', component: BrandHomeComponent},  
   { path:'brand/listing/:id', component: BrandHomeDetailComponent},

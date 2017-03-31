@@ -147,9 +147,6 @@ app.use('/brand-listing', brandListing);
 //Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
-    console.log(process.env.PORT)
-    console.log(process.env.HOST);
-    console.log(req.session);
 });
 
 genuuid = function() {
