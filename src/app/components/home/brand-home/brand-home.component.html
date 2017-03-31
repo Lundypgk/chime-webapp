@@ -1,10 +1,15 @@
 <app-brand-navbar></app-brand-navbar>
-<div (click)="onListing(listing)" *ngFor=" let listing of listings;">
-    <ul>
-        <li [hidden]=true> {{listing._id}} </li>
-        <li> {{listing.description}}</li>
-        <li> {{listing.budget}}</li>
-        <li> {{listing.perks}}</li>
-        <li> {{listing.requirements}}</li>
-    </ul>
+<div class="div-list" (click)="onListing(listing)" *ngFor=" let listing of listings;">
+   <div class="div-left">
+        <img class="dp-list" src="assets/images/tqk.jpg">
+        <label [hidden]=true> {{listing._id}} </label>
+        </div>
+        <div class="div-right">
+        <label>Campaign Name:<span class="color"> The Quay Kitchen</span></label>
+        <label>Perks: <br /><span class="color">{{listing.perks}}</span></label>
+        <label>Requirements: <br /><span class="color">{{listing.requirements}}</span></label>
+        
+        <label> Description: <br /><span class="color">{{listing.description}}</span></label>
+        <label>Budget: <span class="color">{{listing.budget}}</span></label> 
+        </div>
 </div>
