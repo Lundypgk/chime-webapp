@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ChimerListingService } from '../../../services/chimer-listing.service';
 
 @Component({
@@ -10,11 +11,16 @@ export class ChimerJobComponent implements OnInit {
   results : any = [];
   completedJobs : any = [];
   inProgressJobs : any = [];
+  id : any;
 
-  constructor(private listingService : ChimerListingService) { }
+  constructor(private listingService : ChimerListingService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.listingService.getCurrentJob().subscribe(data => {
+    this.route.queryParams.subscribe(params => {
+            this.id = params['id'];
+        });
+    this.listingService.getCurrentJob(this.id).subscribe(data => {
           if(data.success){
 
             this.inProgressJobs = data.results;
@@ -29,7 +35,7 @@ export class ChimerJobComponent implements OnInit {
 
   onSubmit(job,url){
     job.url = url;
-    console.log(job);
+    job.chimerId = this.id;
     this.listingService.updateCurrentJob(job).subscribe(data => {
       console.log(data);
           if(data.success){

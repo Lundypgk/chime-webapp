@@ -55,25 +55,46 @@ router.get('/getCampaginDetails', (req, res, next) => {
     }).toArray().then(function(jobs) {
         for (let data of jobs) {
             let id = new ObjectID(data.chimerId)
-            db.collection('chimeUser').find({
-                _id: id
-            }).toArray().then(function(result) {
+                // db.collection('chimeUser').find({
+                //     _id: id
+                // }).toArray().then(function(result) {
+                //     console.log(result);
+                //     let temp = {};
+                //     // console.log("index " + jobs.indexOf(tempData));
+                //     temp.chimerListingId = data._id;
+                //     temp.name = result[0].FirstName;
+                //     temp.url = data.instaUrl;
+                //     temp.lastUpdated = data.lastUpdated;
+                //     temp.status = data.jobStatus;
+                //     tempDataArray.push(temp);
+                // })
+            db.collection('chimeUser').findOne({ _id: id }, function(err, result) {
                 let temp = {};
-                temp.chimerListingId = jobs[0]._id;
-                temp.name = result[0].FirstName;
-                temp.url = jobs[0].instaUrl;
-                temp.lastUpdated = jobs[0].lastUpdated;
-                temp.status = jobs[0].jobStatus;
+                // console.log("index " + jobs.indexOf(tempData));
+                temp.chimerListingId = data._id;
+                temp.name = result.FirstName;
+                temp.url = data.instaUrl;
+                temp.lastUpdated = data.lastUpdated;
+                temp.status = data.jobStatus;
                 tempDataArray.push(temp);
-                console.log(tempDataArray)
-                res.json({
-                    success: true,
-                    result: tempDataArray
-                });
+                console.log("")
+                console.log("")
+                console.log("")
+                console.log("")
+                console.log(tempDataArray);
+
             })
         }
+        setTimeout(function() {
+            res.json({
+                success: true,
+                result: tempDataArray
+            });
+        }, 5000);
+
     });
 });
+
 
 //Update In Progress Job
 router.put('/updateStatus', (req, res, next) => {

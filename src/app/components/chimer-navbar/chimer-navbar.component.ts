@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { ChimerListingService } from './../../services/chimer-listing.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 
 @Component({
   selector: 'app-chimer-navbar',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chimer-navbar.component.css']
 })
 export class ChimerNavbarComponent implements OnInit {
+  @Input('id') id : string;
+
 
   constructor(private listingService : ChimerListingService,
               private router : Router) { }

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             alert("Login chimer!");
 
             //Redirect to home page
-            this.router.navigate(['/chimer']);
+            this.router.navigate(['/chimer'],{queryParams: { id: data.chimerId}});
           }
           else{
             alert("No such user");

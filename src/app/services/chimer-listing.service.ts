@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {Http, Headers , URLSearchParams } from "@angular/http";
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -21,10 +21,14 @@ export class ChimerListingService {
     .map(res => res.json());
   }
 
-  getCurrentJob(){
+  getCurrentJob(chimerId){
   let headers = new Headers();
   headers.append('Content-Type','application/json');
-  return this.http.get('http://localhost:3000/chimer-listing/getCurrentJob',{ headers : headers})
+  let params: URLSearchParams = new URLSearchParams();
+  params.set('chimerId', chimerId);
+  return this.http.get('http://localhost:3000/chimer-listing/getCurrentJob',
+                      { headers : headers,
+                        search : params })
     .map(res => res.json());
   }
 

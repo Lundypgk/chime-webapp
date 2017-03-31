@@ -1,5 +1,5 @@
-<app-chimer-navbar></app-chimer-navbar>
-<div class="div-list" *ngFor=" let listing of listings;">
+<app-chimer-navbar [id]='chimerId'></app-chimer-navbar>
+<div class="div-list" *ngFor=" let listing of results;">
     <div class="div-left">
         <img class="dp-list" src="assets/images/tqk.jpg">
         <label [hidden]=true> {{listing._id}} </label>
@@ -12,6 +12,6 @@
         <label class="read-more-target"> Description: <br />{{listing.description}}</label>
         <label [hidden]=true>Budget: {{listing.budget}}</label>
         <label for="post-1" class="read-more-trigger"></label>
-        <button class="button-list"> Apply Listing</button>
+        <button class="button-list" (click)="onListing(listing)"> Apply Listing</button>
     </div>
 </div>

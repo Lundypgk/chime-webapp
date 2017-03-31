@@ -13,19 +13,20 @@ router.post('/chimer', (req, res, next) => {
         //If there is such user
         if (docs.length >= 1) {
             // req.session[chimerId] = docs[0]._id;
-            req.session.save(function(err) {
-                if (err)
-                    console.log("error")
-                else
-                    console.log("success");
-            });
+            // req.session.save(function(err) {
+            //     if (err)
+            //         console.log("error")
+            //     else
+            //         console.log("success");
+            // });
             console.log(req.session)
             client.set("chimerId", docs[0]._id.toString());
             // console.log(req.session);
             res.json({
                 success: true,
-                //objects: docs
-            })
+                chimerId: docs[0]._id
+                    //objects: docs
+            });
         } else {
             res.json({
                 success: false,

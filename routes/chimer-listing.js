@@ -62,55 +62,85 @@ router.post('/applyListing', (req, res, next) => {
 router.get('/getCurrentJob', (req, res, next) => {
     db = req.db;
     client = req.client;
-    let chimerId;
+    let chimerId = req.query.chimerId;
     let data = [];
-    client.get("chimerId", function(err, result) {
-        chimerId = result;
-        db.collection('chimerListing').find({
-            chimerId: chimerId
-        }).toArray().then(function(jobs) {
-            //Retrieve the list of listingId from the result 
-            for (let tempData of jobs) {
-                let listingId = new ObjectID(tempData.listingId)
-                    // let obj = { $oid: tempData.listingId };
-                data.push(listingId)
-                    // console.log(tempData)
+    db.collection('chimerListing').find({
+        chimerId: chimerId
+    }).toArray().then(function(jobs) {
+        //Retrieve the list of listingId from the result 
+        for (let tempData of jobs) {
+            let listingId = new ObjectID(tempData.listingId)
+                // let obj = { $oid: tempData.listingId };
+            data.push(listingId)
+                // console.log(tempData)
+        }
+        db.collection('listing').find({
+            _id: { $in: data }
+        }).toArray().then(function(result) {
+            for (let tempData of result) {
+                for (let tempData2 of jobs) {
+                    tempData.status = tempData2.jobStatus
+                }
             }
-            db.collection('listing').find({
-                _id: { $in: data }
-            }).toArray().then(function(result) {
-                for (let tempData of result) {
-                    for (let tempData2 of jobs) {
-                        tempData.status = tempData2.jobStatus
-                    }
-                }
-                //If there is any listing
-                if (result.length >= 1) {
-                    res.json({
-                        success: true,
-                        results: result
-                    })
-                } else {
-                    res.json({
-                        success: false,
-                    })
-                }
-            })
+            //If there is any listing
+            if (result.length >= 1) {
+                res.json({
+                    success: true,
+                    results: result
+                })
+            } else {
+                res.json({
+                    success: false,
+                })
+            }
+        })
 
-            //db.close()
-        });
+        //db.close()
     });
+    // client.get("chimerId", function(err, result) {
+    //     chimerId = result;
+    //     db.collection('chimerListing').find({
+    //         chimerId: chimerId
+    //     }).toArray().then(function(jobs) {
+    //         //Retrieve the list of listingId from the result 
+    //         for (let tempData of jobs) {
+    //             let listingId = new ObjectID(tempData.listingId)
+    //                 // let obj = { $oid: tempData.listingId };
+    //             data.push(listingId)
+    //                 // console.log(tempData)
+    //         }
+    //         db.collection('listing').find({
+    //             _id: { $in: data }
+    //         }).toArray().then(function(result) {
+    //             for (let tempData of result) {
+    //                 for (let tempData2 of jobs) {
+    //                     tempData.status = tempData2.jobStatus
+    //                 }
+    //             }
+    //             //If there is any listing
+    //             if (result.length >= 1) {
+    //                 res.json({
+    //                     success: true,
+    //                     results: result
+    //                 })
+    //             } else {
+    //                 res.json({
+    //                     success: false,
+    //                 })
+    //             }
+    //         })
+
+    //         //db.close()
+    //     });
+    // });
 });
 
 //Update In Progress Job
 router.put('/updateCurrentJob', (req, res, next) => {
     db = req.db;
     client = req.client;
-    let chimerId;
-    console.log(req.body)
-    client.get("chimerId", function(err, result) {
-        chimerId = result;
-        db.collection('chimerListing').update({
+    let chimerId = req.body.chimerId;
+    db.collection('chimerListing').update({
             chimerId: chimerId,
             listingId: req.body._id,
         }, {
@@ -125,7 +155,24 @@ router.put('/updateCurrentJob', (req, res, next) => {
                 results: result
             })
         })
-    });
+        // client.get("chimerId", function(err, result) {
+        //     chimerId = result;
+        //     db.collection('chimerListing').update({
+        //         chimerId: chimerId,
+        //         listingId: req.body._id,
+        //     }, {
+        //         $set: {
+        //             jobStatus: "Approval",
+        //             instaUrl: req.body.url,
+        //             lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
+        //         }
+        //     }).then(function(result) {
+        //         res.json({
+        //             success: true,
+        //             results: result
+        //         })
+        //     })
+        // });
 });
 
 
