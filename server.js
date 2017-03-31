@@ -48,7 +48,9 @@ app.use(expressSession({
 app.use(cors());
 
 //Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'dist')));
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 //Body Parser Middleware
 app.use(bodyParser.json());
