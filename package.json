@@ -45,11 +45,8 @@
         "redis": "^2.7.1",
         "rxjs": "5.0.0-beta.12",
         "ts-helpers": "^1.1.1",
-        "zone.js": "^0.6.23"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
+        "zone.js": "^0.6.23",
+
         "@angular/compiler-cli": "2.2.1",
         "@types/jasmine": "2.5.38",
         "@types/node": "^6.0.42",
@@ -67,5 +64,10 @@
         "tslint": "3.13.0",
         "typescript": "~2.0.3",
         "webdriver-manager": "10.2.5"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+
     }
 }
