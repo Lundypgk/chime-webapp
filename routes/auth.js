@@ -5,7 +5,7 @@ let express = require('express'),
 //Login Router for chimer
 router.post('/chimer', (req, res, next) => {
     db = req.db;
-    let client = req.client;
+    // let client = req.client;
     db.collection('chimeUser').find({
         Username: req.body.username,
         Password: req.body.password
@@ -20,8 +20,8 @@ router.post('/chimer', (req, res, next) => {
             //         console.log("success");
             // });
             console.log(req.session)
-            client.set("chimerId", docs[0]._id.toString());
-            // console.log(req.session);
+                // client.set("chimerId", docs[0]._id.toString());
+                // console.log(req.session);
             res.json({
                 success: true,
                 chimerId: docs[0]._id
@@ -90,13 +90,16 @@ router.post('/brand', (req, res, next) => {
 
 
 router.get('/test', (req, res, next) => {
-    let client = req.client;
-    client.keys("sess:*", function(error, keys) {
-        res.json({
-            activeSession: keys.length,
-            results: keys
+    res.json({
+            host: process.env.HOST
         })
-    });
+        // let client = req.client;
+        // client.keys("sess:*", function(error, keys) {
+        //     res.json({
+        //         activeSession: keys.length,
+        //         results: keys
+        //     })
+        // });
 
 });
 
@@ -107,8 +110,8 @@ router.get('/test1', (req, res, next) => {
 });
 
 router.get('/logout', (req, res, next) => {
-    let client = req.client;
-    console.log(req.session)
+    // let client = req.client;
+    // console.log(req.session)
 
     // client.del("lkD1723L-Emydt8dqqircJsYBFU_bU49", function() {
     //     req.session.destroy(function(err) {

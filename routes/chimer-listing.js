@@ -9,45 +9,44 @@ let express = require('express'),
 //Retrieve All Listing
 router.get('/getAllListing', (req, res, next) => {
     db = req.db;
-    client = req.client;
-    client.get("chimerId", function(err, result) {
-        if (result == "") {
-            res.send("NOT AUTHORIZED");
+    db.collection('listing').find().toArray().then(function(listing) {
+        //If there is any listing
+        if (listing.length >= 1) {
+            res.json({
+                success: true,
+                results: listing
+            })
         } else {
-            db.collection('listing').find().toArray().then(function(listing) {
-                //If there is any listing
-                if (listing.length >= 1) {
-                    res.json({
-                        success: true,
-                        results: listing
-                    })
-                } else {
-                    res.json({
-                        success: false,
-                    })
-                }
-                //db.close()
-            });
+            res.json({
+                success: false,
+            })
         }
+        //db.close()
     });
+    // client = req.client;
+    // client.get("chimerId", function(err, result) {
+    //     if (result == "") {
+    //         res.send("NOT AUTHORIZED");
+    //     } else {
+
+    //     }
+    // });
 
 });
 
 //Apply for Listing
 router.post('/applyListing', (req, res, next) => {
     db = req.db;
-    client = req.client;
-    let chimerId;
-    client.get("chimerId", function(err, result) {
-        chimerId = result;
-        let listing = {
-            chimerId: chimerId,
-            listingId: req.body._id,
-            jobStatus: "InProgress",
-            perks: "",
-            instaUrl: ""
-        };
-        db.collection('chimerListing').save(listing, (err, result) => {
+    // client = req.client;
+    let chimerId = req.body.chimerId;
+    let listing = {
+        chimerId: chimerId,
+        listingId: req.body._id,
+        jobStatus: "InProgress",
+        perks: "",
+        instaUrl: ""
+    };
+    db.collection('chimerListing').save(listing, (err, result) => {
             if (err) return console.log(err);
             res.json({
                 success: true,
@@ -55,13 +54,16 @@ router.post('/applyListing', (req, res, next) => {
             });
             console.log('saved to database');
         })
-    });
+        // client.get("chimerId", function(err, result) {
+        //     chimerId = result;
+
+    // });
 });
 
 //Retrieve In Progress Job
 router.get('/getCurrentJob', (req, res, next) => {
     db = req.db;
-    client = req.client;
+    // client = req.client;
     let chimerId = req.query.chimerId;
     let data = [];
     db.collection('chimerListing').find({
@@ -138,7 +140,7 @@ router.get('/getCurrentJob', (req, res, next) => {
 //Update In Progress Job
 router.put('/updateCurrentJob', (req, res, next) => {
     db = req.db;
-    client = req.client;
+    // client = req.client;
     let chimerId = req.body.chimerId;
     db.collection('chimerListing').update({
             chimerId: chimerId,

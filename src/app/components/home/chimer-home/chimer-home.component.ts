@@ -55,6 +55,7 @@ export class ChimerHomeComponent implements OnInit {
   }
 
   onListing(listing){
+    listing.chimerId = this.chimerId;
     this.listingService.applyListing(listing).subscribe(data => {
       console.log("onListing");
       if (data.success){

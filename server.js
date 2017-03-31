@@ -6,9 +6,9 @@ let express = require('express'),
     // mongoose = require('mongoose'),
     config = require('./config/database'),
     expressSession = require('express-session'),
-    redis = require("redis"),
-    redisStore = require('connect-redis')(expressSession),
-    client = redis.createClient(),
+    // redis = require("redis"),
+    // redisStore = require('connect-redis')(expressSession),
+    // client = redis.createClient(),
     uid = require('uid-safe'),
     db;
 
@@ -20,8 +20,8 @@ let auth = require('./routes/auth'),
     brandListing = require('./routes/brand-listing');
 
 //Specifies the port number
-// let port = process.env.PORT || 3000;
-let port = 3000;
+let port = process.env.PORT || 3000;
+// let port = 3000;
 
 // Passport Authentication
 // app.use(passport.initialize());
@@ -38,8 +38,8 @@ app.use(expressSession({
     cookie: {
         maxAge: 36000000,
         secure: false
-    },
-    store: new redisStore({ host: 'localhost', port: process.env.PORT || 5000, client: client, ttl: 100 }),
+    }
+    // store: new redisStore({ host: 'localhost', port: process.env.PORT || 5000, client: client, ttl: 100 }),
 }));
 // let router = express.Router();
 // app.use(router);
@@ -68,16 +68,16 @@ MongoClient.connect(config.database, (err, database) => {
 
 });
 
-client.on('ready', function() {
-    console.log("Redis is ready");
-    // client.flushdb(function(err, succeeded) {
-    //     console.log(succeeded); // will be true if successfull
-    // });
-});
+// client.on('ready', function() {
+//     console.log("Redis is ready");
+//     // client.flushdb(function(err, succeeded) {
+//     //     console.log(succeeded); // will be true if successfull
+//     // });
+// });
 
-client.on("error", function(err) {
-    console.log("Error " + err);
-});
+// client.on("error", function(err) {
+//     console.log("Error " + err);
+// });
 // mongoose.connect(config.database, (err, database) => {
 //     if (err) return console.log(err)
 //     db = database;
@@ -87,7 +87,7 @@ client.on("error", function(err) {
 //Make db accessbile to routers;
 app.use(function(req, res, next) {
     req.db = db;
-    req.client = client;
+    // req.client = client;
     // req.session = expressSession;
     // res.locals.session = req.session;
     next();
@@ -145,6 +145,8 @@ app.use('/brand-listing', brandListing);
 //Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
+    console.log(process.env.PORT)
+    console.log(process.env.HOST);
     console.log(req.session);
 });
 
