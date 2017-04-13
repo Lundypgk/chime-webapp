@@ -1,10 +1,12 @@
 let express = require('express'),
     router = express.Router(),
-    db;
+    config = require('../config/config'),
+    db, jwt;
 
 //Login Router for chimer
 router.post('/chimer', (req, res, next) => {
     db = req.db;
+    jwt = req.jwt;
     // let client = req.client;
     db.collection('chimeUser').find({
         Username: req.body.username,
@@ -12,21 +14,36 @@ router.post('/chimer', (req, res, next) => {
     }).toArray().then(function(docs) {
         //If there is such user
         if (docs.length >= 1) {
-            // req.session[chimerId] = docs[0]._id;
-            // req.session.save(function(err) {
-            //     if (err)
-            //         console.log("error")
-            //     else
-            //         console.log("success");
-            // });
-            console.log(req.session)
-                // client.set("chimerId", docs[0]._id.toString());
-                // console.log(req.session);
-            res.json({
-                success: true,
+            console.log(req.jwt);
+            jwt.sign({
+                data: 'foobar',
                 chimerId: docs[0]._id
-                    //objects: docs
+            }, config.secret, { expiresIn: '1h' }, function(err, token) {
+                if (err)
+                    console.log(err)
+                res.json({
+                    success: true,
+                    chimerId: docs[0]._id,
+                    jwt: token
+                        //objects: docs
+                });
             });
+            // req.session.chimerId = docs[0]._id;
+            // req.session.save(function(err) {
+            //         if (err)
+            //             console.log(err)
+            //             // session saved
+            //         res.json({
+            //             success: true,
+            //             chimerId: docs[0]._id
+            //                 //objects: docs
+            //         });
+            //     })
+            // console.log(req.session)
+
+            // client.set("chimerId", docs[0]._id.toString());
+            // console.log(req.session);
+
         } else {
             res.json({
                 success: false,
@@ -69,7 +86,7 @@ router.post('/brand', (req, res, next) => {
         Password: req.body.password
     }).toArray().then(function(docs) {
         req.session.brand = docs;
-        req.session.save();
+
         console.log(req.session.brand);
         //If there is such user
         if (docs.length >= 1) {
@@ -89,24 +106,14 @@ router.post('/brand', (req, res, next) => {
 
 
 
-router.get('/test', (req, res, next) => {
-    res.json({
-            host: process.env.HOST
+router.post('/test', (req, res, next) => {
+    jwt = req.jwt;
+    jwt.verify(req.body.token, config.secret, function(err, decoded) {
+        res.json({
+            result: decoded
         })
-        // let client = req.client;
-        // client.keys("sess:*", function(error, keys) {
-        //     res.json({
-        //         activeSession: keys.length,
-        //         results: keys
-        //     })
-        // });
+    });
 
-});
-
-router.get('/test1', (req, res, next) => {
-    res.json({
-        results: req.sessionId
-    })
 });
 
 router.get('/logout', (req, res, next) => {

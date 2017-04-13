@@ -12,14 +12,14 @@ export class BrandListingService {
   retrieveListing(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get('https://wearechime.herokuapp.com/brand-listing/getAllListing',{ headers : headers})
+    return this.http.get('http://localhost:3000/brand-listing/getAllListing',{ headers : headers})
       .map(res => res.json());
   }
 
   postListing(listing){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('https://wearechime.herokuapp.com/brand-listing/addListing',listing,{ headers : headers})
+    return this.http.post('http://localhost:3000/brand-listing/addListing',listing,{ headers : headers})
       .map(res => res.json());
   }
 
@@ -28,7 +28,7 @@ export class BrandListingService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('listingId', listingId);
     headers.append('Content-Type','application/json');
-    return this.http.get('https://wearechime.herokuapp.com/brand-listing/getCampaginDetails'
+    return this.http.get('http://localhost:3000/brand-listing/getCampaginDetails'
                         ,{ headers : headers,
                           search : params })
       .map(res => res.json());
@@ -37,7 +37,7 @@ export class BrandListingService {
   updateStatus(data){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.put('https://wearechime.herokuapp.com/brand-listing/updateStatus', data , { headers : headers})
+    return this.http.put('http://localhost:3000/brand-listing/updateStatus', data , { headers : headers})
       .map(res => res.json());
   }
 }

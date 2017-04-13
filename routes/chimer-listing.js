@@ -1,7 +1,7 @@
 let express = require('express'),
     moment = require('moment'),
     router = express.Router(),
-    ObjectID = require('mongodb').ObjectID,
+    // ObjectID = require('mongodb').ObjectID,
     db, client;
 
 // let applyListing = require('../models/chimer-listing');
@@ -9,6 +9,9 @@ let express = require('express'),
 //Retrieve All Listing
 router.get('/getAllListing', (req, res, next) => {
     db = req.db;
+    console.log(req.sessionID)
+    console.log(req.session.id)
+    console.log(req.session)
     db.collection('listing').find().toArray().then(function(listing) {
         //If there is any listing
         if (listing.length >= 1) {
@@ -38,24 +41,31 @@ router.get('/getAllListing', (req, res, next) => {
 router.post('/applyListing', (req, res, next) => {
     db = req.db;
     // client = req.client;
+    console.log(req.session)
+    console.log("==============")
     let chimerId = req.body.chimerId;
     let listing = {
-        chimerId: chimerId,
+        chimerId: req.session.chimerId,
         listingId: req.body._id,
         jobStatus: "InProgress",
         perks: "",
         instaUrl: ""
     };
-    db.collection('chimerListing').save(listing, (err, result) => {
-            if (err) return console.log(err);
-            res.json({
-                success: true,
-                message: "saved into database !"
-            });
-            console.log('saved to database');
-        })
-        // client.get("chimerId", function(err, result) {
-        //     chimerId = result;
+    res.json({
+        success: true,
+        message: "saved into database !",
+        session: req.session
+    });
+    // db.collection('chimerListing').save(listing, (err, result) => {
+    //         if (err) return console.log(err);
+    //         res.json({
+    //             success: true,
+    //             message: "saved into database !"
+    //         });
+    //         console.log('saved to database');
+    //     })
+    // client.get("chimerId", function(err, result) {
+    //     chimerId = result;
 
     // });
 });

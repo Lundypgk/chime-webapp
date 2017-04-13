@@ -115,5 +115,11 @@ router.put('/updateStatus', (req, res, next) => {
     })
 });
 
+router.get('/test', (req, res, next) => {
+    res.json({
+        SessionStore: req.sessionStore,
+        SessionID: req.session
+    })
+});
 
 module.exports = router;

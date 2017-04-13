@@ -10,17 +10,19 @@ export class UserLoginService {
   brandLogin(credentials){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('https://wearechime.herokuapp.com/login/brand',credentials,{ headers : headers})
-      .map(res => res.json());
+    // return this.http.post('https://wearechime.herokuapp.com/login/brand',credentials,{ headers : headers})
+    //   .map(res => res.json());
+    return this.http.post('http://localhost:3000/login/brand',credentials,{ headers : headers})
+    .map(res => res.json());
   }
 
   chimerLogin(credentials){
   let headers = new Headers();
   headers.append('Content-Type','application/json');
-  // return this.http.post('http://localhost:3000/login/chimer',credentials,{ headers : headers})
-  //   .map(res => res.json());
-  // }
-    return this.http.post('https://wearechime.herokuapp.com/login/chimer',credentials,{ headers : headers})
+  return this.http.post('http://localhost:3000/login/chimer',credentials,{ headers : headers})
     .map(res => res.json());
+  
+    // return this.http.post('https://wearechime.herokuapp.com/login/chimer',credentials,{ headers : headers})
+    // .map(res => res.json());
   }
 }
