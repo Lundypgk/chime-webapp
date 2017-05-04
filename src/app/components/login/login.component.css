@@ -1,24 +1,21 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-.btn-success{
-        width: 100%;
+.btn-success {
+    width: 100%;
     margin-top: 2%;
     border-radius: 50px;
-        color: #000;
+    color: #000;
     background-color: #FACB1B;
     border-color: #FACB1B;
     font-weight: bold;
-
 }
 
-.btn-success:active, 
-.btn-success:focus{
-
-        color: #fff;
+.btn-success:active,
+.btn-success:focus {
+    color: #fff;
     background-color: #080808;
     border-color: #080808;
-
-
 }
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -60,6 +57,7 @@ body {
     letter-spacing: 1px;
     text-align: center;
 }
+
 .form-control {
     display: block;
     width: 100%;
@@ -72,11 +70,11 @@ body {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 50px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 .form-control:focus {

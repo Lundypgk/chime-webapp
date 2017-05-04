@@ -1,9 +1,10 @@
 let express = require('express'),
     moment = require('moment'),
     router = express.Router(),
+    config = require('../config/config'),
     ObjectID = require('mongodb').ObjectID,
-    db,
-    Listing = require('../models/listing');
+    db, jwt;
+// Listing = require('../models/listing');
 
 //Retrieve All Listing
 //*Need to configure to retrieve only the brand's listing*
@@ -21,7 +22,6 @@ router.get('/getAllListing', (req, res, next) => {
                 success: false,
             })
         }
-        //db.close()
     });
 });
 
@@ -77,12 +77,7 @@ router.get('/getCampaginDetails', (req, res, next) => {
                 temp.lastUpdated = data.lastUpdated;
                 temp.status = data.jobStatus;
                 tempDataArray.push(temp);
-                console.log("")
-                console.log("")
-                console.log("")
-                console.log("")
                 console.log(tempDataArray);
-
             })
         }
         setTimeout(function() {

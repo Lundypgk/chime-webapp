@@ -25,11 +25,6 @@ export class BrandHomeComponent implements OnInit {
   }
 
   onListing(listing){
-    this.router.navigate(['brand/listing/:id']
-    ,{queryParams: 
-      {
-        id: listing._id,
-    }});
+    this.router.navigate(['brand/listing/:id'], { queryParams:{ id: listing._id } });
   }
-
 }

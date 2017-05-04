@@ -11,21 +11,16 @@ export class ChimerJobComponent implements OnInit {
   results : any = [];
   completedJobs : any = [];
   inProgressJobs : any = [];
-  id : any;
+  jwt : String;
 
   constructor(private listingService : ChimerListingService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-            this.id = params['id'];
-        });
-    this.listingService.getCurrentJob(this.id).subscribe(data => {
+    this.jwt = localStorage.getItem('wearechime');    
+    this.listingService.getCurrentJob(this.jwt).subscribe(data => {
           if(data.success){
-
             this.inProgressJobs = data.results;
-
-            console.log(this.inProgressJobs);
           }
           else{
             //No data
@@ -35,11 +30,9 @@ export class ChimerJobComponent implements OnInit {
 
   onSubmit(job,url){
     job.url = url;
-    job.chimerId = this.id;
+    job.jwt = this.jwt;
     this.listingService.updateCurrentJob(job).subscribe(data => {
-      console.log(data);
           if(data.success){
-            console.log("successs");
             alert("Success");
             location.reload();
           }

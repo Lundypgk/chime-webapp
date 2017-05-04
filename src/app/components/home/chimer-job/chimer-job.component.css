@@ -1,57 +1,57 @@
-.header {
-    display: block;
-    background: #f9f9f9;
-    box-shadow: 1.5px 1.5px .75px #999;
-    text-align: center;
-    line-height: 30px;
-    font-size: 1.3em;
-    margin: auto;
-}
-
-.list-group-item {
-    border: none;
-    margin-bottom: 1px;
-    background: #f9f9f9;
-}
-
-.list-group {
-    display: block;
-    background: #f9f9f9;
-    box-shadow: 1.5px 1.5px .75px #999;
-    text-align: left;
-    margin: 3% 0%;
-}
-
-.color {
-    color: #FACB1B
-}
-
-.button-list {
-    width: 80%;
-    border-radius: 25px;
-    display: inline-block;
-    color: #fff;
-    padding: 0px 20px 0 20px;
-    height: 35px;
-    /* margin: auto; */
-    line-height: 35px;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #000;
-    background: #FACB1B;
-    border: 1px solid #FACB1B;
-    border-radius: 20px;
-    font-weight: 700;
-    font-family: "Montserrat", sans-serif;
-    /* position: relative; */
-    /* float: right !important; */
-    /* margin-top: 10px; */
-    /* margin-left: 30px; */
-    margin: 10px 0px 10px 30px;
-}
-
-.input-field {
-    width: 80%;
-    line-height: 30px;
-    margin-left: 30px;
-}
+    .header {
+        display: block;
+        background: #f9f9f9;
+        box-shadow: 1.5px 1.5px .75px #999;
+        text-align: center;
+        line-height: 30px;
+        font-size: 1.3em;
+        margin: auto;
+    }
+    
+    .list-group-item {
+        border: none;
+        margin-bottom: 1px;
+        background: #f9f9f9;
+    }
+    
+    .list-group {
+        display: block;
+        background: #f9f9f9;
+        box-shadow: 1.5px 1.5px .75px #999;
+        text-align: left;
+        margin: 3% 0%;
+    }
+    
+    .color {
+        color: #FACB1B
+    }
+    
+    .button-list {
+        width: 80%;
+        border-radius: 25px;
+        display: inline-block;
+        color: #fff;
+        padding: 0px 20px 0 20px;
+        height: 35px;
+        /* margin: auto; */
+        line-height: 35px;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #000;
+        background: #FACB1B;
+        border: 1px solid #FACB1B;
+        border-radius: 20px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        /* position: relative; */
+        /* float: right !important; */
+        /* margin-top: 10px; */
+        /* margin-left: 30px; */
+        margin: 10px 0px 10px 30px;
+    }
+    
+    .input-field {
+        width: 80%;
+        line-height: 30px;
+        margin-left: 30px;
+    }

@@ -10,8 +10,16 @@
                 <li [hidden]=true> {{jobs.budget}}</li>
                 <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
                 <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
+                <li class="list-group-item"> Brand Website <br />
+                    <span class="color"> 
+                    <a href="">www.facebook.com/thequaykitchen/</a>
+                    </span></li>
                 <input type="text" class="input-field" placeholder="Instagram URL" #url>
                 <button class="button-list" (click)="onSubmit(jobs,url.value)"> Submit </button>
+                <div>
+                    <i class="fa fa-instagram"></i>
+                    <a href="instagram://app">Redirect to Instagram</a>
+                </div>
             </ul>
         </div>
     </div>

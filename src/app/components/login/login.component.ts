@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -29,14 +30,14 @@ export class LoginComponent implements OnInit {
       password : this.loginForm.value.password
     }
     if(this.loginForm.valid){
-      console.log(this.loginForm.value.user);
       if (this.loginForm.value.user == "chimer"){
           this.loginService.chimerLogin(credentials).subscribe(data => {
-          if(data.success){
-            alert("Login chimer!");
-
-            //Redirect to home page
-            this.router.navigate(['/chimer'],{queryParams: { id: data.chimerId}});
+            if(data.success){
+              alert("Login chimer!");
+              //Set JWT to the local storage
+              localStorage.setItem('wearechime',data.jwt);
+              //Redirect to home page
+              this.router.navigate(['/chimer']);
           }
           else{
             alert("No such user");
@@ -47,7 +48,9 @@ export class LoginComponent implements OnInit {
           this.loginService.brandLogin(credentials).subscribe(data => {
           if(data.success){
             alert("Login brand!");
-
+            //Set JWT to the local storage
+            localStorage.setItem('wearechime',data.jwt);
+            
             //Redirect to home page
             this.router.navigate(['/brand']);
           }

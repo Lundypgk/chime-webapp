@@ -4,7 +4,6 @@ let express = require('express'),
     cors = require('cors'),
     config = require('./config/config'),
     expressSession = require('express-session'),
-    uid = require('uid-safe'),
     morgan = require('morgan'),
     jwt = require('jsonwebtoken'),
     db;
@@ -23,7 +22,7 @@ let port = process.env.PORT || 3000;
 app.use(cors());
 
 // use morgan to log requests to the console
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 //Set Static Folder
 // app.use(express.static(path.join(__dirname, 'dist')));
@@ -44,8 +43,6 @@ MongoClient.connect(config.database, (err, database) => {
     app.listen(port, () => {
         console.log('Server started on port' + port);
     });
-
-
 });
 
 //Make db accessbile to routers;
@@ -56,7 +53,7 @@ app.use(function(req, res, next) {
 });
 
 //Routes
-app.use('/login', auth);
+app.use('/auth', auth);
 app.use('/chimer-listing', chimerListing);
 app.use('/brand-listing', brandListing);
 

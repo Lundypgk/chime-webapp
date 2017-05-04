@@ -21,6 +21,7 @@ export class BrandHomeDetailComponent implements OnInit {
             this.id = params['id'];
         });
     this.listingService.getCampaignDetail(this.id).subscribe(data => {
+      console.log(data);
           if(data.success){
             this.campaignDetails = data.result;
           }
