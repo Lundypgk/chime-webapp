@@ -23,18 +23,18 @@
         />
       </div>
       <div class="form-group text-center">
-        <!--<input type="radio" name="user" formControlName="user" value="chimer" /> Chimer
-                <input type="radio" name="user" formControlName="user" value="brand" /> Brand-->
         <label class="control control--radio">
-                <input type="radio" name="radio" checked="checked"/>Chimer
+                <input type="radio" name="user" formControlName="user" [checked]=true value="chimer"/>Chimer
                 <div class="control__indicator"></div>
                 </label>
         <label class="control control--radio">
-                <input type="radio" name="radio"/>Brand
+                <input type="radio" name="user" formControlName="user" value="brand"/>Brand
                 <div class="control__indicator"></div>
                 </label>
       </div>
       <button type="submit" class="btn btn-success">Login</button>
+      <div [ngBusy]="{busy: busy, message: 'Please wait..', minDuration: 600,wrapperClass : loading}"> </div>
+      <simple-notifications></simple-notifications>
     </form>
   </div>
 

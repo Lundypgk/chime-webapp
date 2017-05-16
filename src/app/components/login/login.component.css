@@ -88,6 +88,10 @@ img {
   width: 100%;
 }
 
+.loading {
+  font-size: 200px;
+}
+
 .control-group {
   display: inline-block;
   vertical-align: top;

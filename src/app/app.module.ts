@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BusyModule } from 'angular2-busy';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,14 +20,14 @@ import { BrandListingService } from './services/brand-listing.service';
 import { ChimerNavbarComponent } from './components/chimer-navbar/chimer-navbar.component';
 import { ChimerJobComponent } from './components/home/chimer-job/chimer-job.component';
 
-const appRoutes : Routes = [
-  { path:'', component: LoginComponent},
-  { path:'login', component: LoginComponent},
-  { path:'brand', component: BrandHomeComponent},  
-  { path:'brand/listing/:id', component: BrandHomeDetailComponent},
-  { path:'brand/add-listing', component: BrandAddListingComponent},
-  { path:'chimer', component: ChimerHomeComponent},
-  { path:'chimer/jobs', component: ChimerJobComponent}
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'brand', component: BrandHomeComponent },
+  { path: 'brand/listing/:id', component: BrandHomeDetailComponent },
+  { path: 'brand/add-listing', component: BrandAddListingComponent },
+  { path: 'chimer', component: ChimerHomeComponent },
+  { path: 'chimer/jobs', component: ChimerJobComponent }
 ]
 
 @NgModule({
@@ -41,12 +44,15 @@ const appRoutes : Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    BusyModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+    SimpleNotificationsModule.forRoot()
   ],
-  providers: [ChimerListingService,BrandListingService,UserLoginService],
+  providers: [ChimerListingService, BrandListingService, UserLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

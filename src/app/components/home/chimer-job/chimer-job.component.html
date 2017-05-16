@@ -1,57 +1,57 @@
 <app-chimer-navbar></app-chimer-navbar>
 <div class="col-md-4">
-    <span class="header">In Progress</span>
-    <div *ngFor=" let jobs of inProgressJobs;">
-        <div *ngIf="jobs.status == 'InProgress'">
-            <ul class="list-group">
-                <li [hidden]=true> {{jobs._id}} </li>
-                <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
-                <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
-                <li [hidden]=true> {{jobs.budget}}</li>
-                <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
-                <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
-                <li class="list-group-item"> Brand Website <br />
-                    <span class="color"> 
+  <span class="header">In Progress</span>
+  <div *ngFor=" let jobs of inProgressJobs;">
+    <div *ngIf="jobs.status == 'InProgress'">
+      <ul class="list-group">
+        <li [hidden]=true> {{jobs._id}} </li>
+        <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
+        <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
+        <li [hidden]=true> {{jobs.budget}}</li>
+        <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
+        <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
+        <li class="list-group-item"> Brand Website <br />
+          <span class="color"> 
                     <a href="">www.facebook.com/thequaykitchen/</a>
                     </span></li>
-                <input type="text" class="input-field" placeholder="Instagram URL" #url>
-                <button class="button-list" (click)="onSubmit(jobs,url.value)"> Submit </button>
-                <div>
+        <input type="text" class="input-field" placeholder="Instagram URL" #url>
+        <button class="button-list" (click)="onSubmit(jobs,url.value)"> Submit </button>
+        <!--<div>
                     <i class="fa fa-instagram"></i>
                     <a href="instagram://app">Redirect to Instagram</a>
-                </div>
-            </ul>
-        </div>
+                </div>-->
+      </ul>
     </div>
+  </div>
 </div>
 
 <div class="col-md-4">
-    <span class="header">Awaiting Approval</span>
-    <div *ngFor=" let jobs of inProgressJobs;">
-        <div *ngIf="jobs.status == 'Approval'">
-            <ul class="list-group">
-                <li [hidden]=true> {{jobs._id}} </li>
-                <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
-                <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
-                <li [hidden]=true> {{jobs.budget}}</li>
-                <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
-                <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
-            </ul>
-        </div>
+  <span class="header">Awaiting Approval</span>
+  <div *ngFor=" let jobs of inProgressJobs;">
+    <div *ngIf="jobs.status == 'Approval'">
+      <ul class="list-group">
+        <li [hidden]=true> {{jobs._id}} </li>
+        <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
+        <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
+        <li [hidden]=true> {{jobs.budget}}</li>
+        <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
+        <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
+      </ul>
     </div>
+  </div>
 </div>
 <div class="col-md-4">
-    <span class="header">Completed</span>
-    <div *ngFor=" let jobs of inProgressJobs;">
-        <div *ngIf="jobs.status == 'Completed'">
-            <ul class="list-group">
-                <li [hidden]=true> {{jobs._id}} </li>
-                <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
-                <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
-                <li [hidden]=true> {{jobs.budget}}</li>
-                <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
-                <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
-            </ul>
-        </div>
+  <span class="header">Completed</span>
+  <div *ngFor=" let jobs of inProgressJobs;">
+    <div *ngIf="jobs.status == 'Completed'">
+      <ul class="list-group">
+        <li [hidden]=true> {{jobs._id}} </li>
+        <li class="list-group-item"> Brand Name: <span class="color">The Quay Kitchen</span></li>
+        <li class="list-group-item"> Job Description:<br /><span class="color"> {{jobs.description}}</span></li>
+        <li [hidden]=true> {{jobs.budget}}</li>
+        <li class="list-group-item"> Job Perks: <br /><span class="color">{{jobs.perks}}</span></li>
+        <li class="list-group-item"> Job Requirements:<br /><span class="color"> {{jobs.requirements}}</span></li>
+      </ul>
     </div>
+  </div>
 </div>
