@@ -12,6 +12,16 @@
   6.Once you post the photo on instagram, share the Instagram link on the Chime app and congrats, you have finished a job
   just like that!
 </p>
+<li *ngFor="let obj of allListing">{{obj | json}}</li>
+ALL
+<br>
+<li *ngFor="let obj of currentJob">{{obj | json}}</li>
+CURRENT
+<br>
+<li *ngFor="let obj of results">{{obj | json}}</li>
+RESULTS
+<br>
+
 <div class="div-list" *ngFor=" let listing of results;">
   <div class="div-left">
     <img class="dp-list" src="../../../assets/Images/tqk.jpg">
@@ -21,11 +31,14 @@
     <label>Brand Name: The Quay Kitchen</label>
     <label>Perks: <br />{{listing.perks}}</label>
     <label>Requirements: <br />{{listing.requirements}}</label>
-    <input type="checkbox" class="read-more-state" id="post-1" />
-    <label class="read-more-target"> Description: <br />{{listing.description}}</label>
+    <!--<input type="checkbox" class="read-more-state" id="post-1" />-->
+    <!--<label class="read-more-target"> Description: <br />{{listing.description}}</label>-->
+    <label>Description: <br />{{listing.description}}</label>
     <label [hidden]=true>Budget: {{listing.budget}}</label>
-    <label for="post-1" class="read-more-trigger"></label>
+    <!--<label for="post-1" class="read-more-trigger"></label>-->
     <button class="button-list" (click)="onListing(listing)"> Apply Listing</button>
   </div>
   <simple-notifications></simple-notifications>
 </div>
+
+<br/>

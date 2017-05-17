@@ -27,6 +27,8 @@ export class ChimerHomeComponent implements OnInit {
         this.listingService.getCurrentJob(this.jwt).subscribe(data => {
           if (data.success) {
             this.currentJob = data.results;
+            console.log("allisting  " + this.allListing.toString());
+            console.log("currentJOb " + this.currentJob);
             for (let temp1 of this.allListing) {
               for (let temp2 of this.currentJob) {
                 if (temp1._id != temp2._id) {
@@ -54,16 +56,16 @@ export class ChimerHomeComponent implements OnInit {
     listing.jwt = this.jwt;
     this.listingService.applyListing(listing).subscribe(data => {
       if (data.success) {
-        this._service.success(
-          'Success !',
-          'Data has been saved into database',
-          {
-            timeOut: 3000,
-            pauseOnHover: false,
-            clickToClose: true
-          }
-        )
-        // location.reload();
+        // this._service.success(
+        //   'Success !',
+        //   'Data has been saved into database',
+        //   {
+        //     timeOut: 3000,
+        //     pauseOnHover: false,
+        //     clickToClose: true
+        //   }
+        // )
+        location.reload();
       }
       else {
         this._service.error(
