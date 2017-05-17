@@ -1,3 +1,4 @@
+/*media queries*/
 @media only screen and (max-width: 400px) {
   .div-left {
     width: 100%;
@@ -11,10 +12,11 @@
     margin: 5px -30px;
   }
 }
-
-
 /*media queries*/
 
+
+
+/* 
 .read-more-state {
   display: none;
 }
@@ -50,10 +52,61 @@
   border: 1px solid #ddd;
   border-radius: .25em;
 }
+ end of read more section*/
 
+/* start of the right side of the page*/
 
-/* end of read more section*/
+.div-Instruction {
+    float: left;
+    width: 40%;
+    margin: 0% 2%;
 
+    display: block;
+       background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
+    box-shadow: 2px 3px 17.5px #999;
+ 
+    padding: 10px;
+    float: left;
+
+    padding: 2%;
+    font-weight: bold;
+}
+.text-center
+{
+  color:#FACB1B;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #FACB1B;
+  margin: 0px 0px 15px;
+}
+/*End of right side of the page*/
+/*start of left side of the page*/
+
+.right-Title{
+  display:block;
+    background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
+    box-shadow: 2px 3px 17.5px #999;
+    width: 100%;
+    padding:10px;
+    margin: inherit;
+    color:#FACB1B;
+
+    font-weight: bold;
+}
+.div-Jobs
+{
+  float:left;
+  width: 55%;
+}
+.div-list {
+display: block;
+        background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
+    box-shadow: 2px 3px 17.5px #999;
+    width: 100%;
+    padding: 10px;
+    float: left;
+    margin-top: 20px;
+
+}
 div img label {
   float: left;
   position: relative;
@@ -71,19 +124,12 @@ label {
 }
 
 .div-right {
-  width: 80%;
+  width: 75%;
+  margin: 0% 2%;
   float: left;
 }
 
-.div-list {
-  display: block;
-  background: #f9f9f9;
-  box-shadow: 5px 5px 2.5px #999;
-  width: 80%;
-  margin-left: 10%;
-  padding: 10px;
-  float: left;
-}
+
 
 .dp-list {
   border-radius: 50%;
@@ -111,3 +157,4 @@ label {
   /* margin-top: 50px; */
   float: right !important;
 }
+/*End of right side of the page*/
