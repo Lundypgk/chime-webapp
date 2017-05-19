@@ -14,7 +14,7 @@
 <body>
   <div class="login">
     <img src="../../../assets/Images/chimemaybe-black.png" alt="">
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" [ngBusy]="{busy: busy, message: 'Logging in ...', backdrop: true, delay: 200, minDuration: 600}">
       <div class="form-group">
         <input class="form-control" type="text" name="u" placeholder="Username" required="required" formControlName="username" />
       </div>
@@ -33,7 +33,7 @@
                 </label>
       </div>
       <button type="submit" class="btn btn-success">Login</button>
-      <div [ngBusy]="{busy: busy, message: 'Please wait..', minDuration: 600,wrapperClass : loading}"> </div>
+      <!--<div [ngBusy]="{busy: busy, message: 'Please wait..', minDuration: 600,wrapperClass : loading}" class="loading"> </div>-->
       <simple-notifications></simple-notifications>
     </form>
   </div>

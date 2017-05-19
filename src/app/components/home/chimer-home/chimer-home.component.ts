@@ -27,13 +27,15 @@ export class ChimerHomeComponent implements OnInit {
         this.listingService.getCurrentJob(this.jwt).subscribe(data => {
           if (data.success) {
             this.currentJob = data.results;
-            console.log("allisting  " + this.allListing.toString());
-            console.log("currentJOb " + this.currentJob);
             for (let temp1 of this.allListing) {
+              let isExist = false;
               for (let temp2 of this.currentJob) {
-                if (temp1._id != temp2._id) {
-                  this.results.push(temp1);
+                if (temp1._id == temp2._id) {
+                  isExist = true;
                 }
+              }
+              if (!isExist) {
+                this.results.push(temp1);
               }
             }
           }

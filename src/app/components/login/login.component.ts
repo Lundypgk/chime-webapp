@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: [''],
-      user: ['']
+      user: ['chimer'] // setting the default value
     });
   }
 
