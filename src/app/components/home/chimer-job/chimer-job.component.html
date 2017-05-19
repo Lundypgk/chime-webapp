@@ -1,5 +1,5 @@
 <app-chimer-navbar></app-chimer-navbar>
-<div class="col-md-4">
+<div class="col-md-4" [ngBusy]="{busy: busy, message: 'Retreving data ...', backdrop: true, delay: 200, minDuration: 600}">
   <span class="header">In Progress</span>
   <div *ngFor=" let jobs of inProgressJobs;">
     <div *ngIf="jobs.status == 'InProgress'">

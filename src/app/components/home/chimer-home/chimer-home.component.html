@@ -17,7 +17,7 @@
 
 </div>
 
-<div class="div-Jobs">
+<div class="div-Jobs" [ngBusy]="{busy: busy, message: 'Retrieving Data ...', backdrop: true, delay: 200, minDuration: 600}">
   <h2 class="right-Title text-center">Available Jobs:</h2>
   <div class="div-list" *ngFor=" let listing of results;">
 

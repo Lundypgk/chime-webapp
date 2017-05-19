@@ -2,6 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ChimerListingService } from '../../../services/chimer-listing.service';
 import { NotificationsService } from "angular2-notifications";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chimer-home',
@@ -13,6 +14,7 @@ export class ChimerHomeComponent implements OnInit {
   currentJob: any = [];
   results: any = [];
   jwt: String;
+  busy: Subscription;
 
   constructor(private listingService: ChimerListingService,
     private router: Router,
@@ -21,7 +23,7 @@ export class ChimerHomeComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = localStorage.getItem('wearechime');
-    this.listingService.retrieveListing().subscribe(data => {
+    this.busy = this.listingService.retrieveListing().subscribe(data => {
       if (data.success) {
         this.allListing = data.results;
         this.listingService.getCurrentJob(this.jwt).subscribe(data => {
@@ -56,7 +58,7 @@ export class ChimerHomeComponent implements OnInit {
 
   onListing(listing) {
     listing.jwt = this.jwt;
-    this.listingService.applyListing(listing).subscribe(data => {
+    this.busy = this.listingService.applyListing(listing).subscribe(data => {
       if (data.success) {
         // this._service.success(
         //   'Success !',
