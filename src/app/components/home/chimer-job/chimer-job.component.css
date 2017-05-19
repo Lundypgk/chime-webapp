@@ -1,11 +1,13 @@
     .header {
         display: block;
-        background: #f9f9f9;
-        box-shadow: 1.5px 1.5px .75px #999;
+       background: linear-gradient(#fff, #FDFDFD, #F7F7F7);;
+          box-shadow: 1px 1px 3.5px #999;
         text-align: center;
         line-height: 30px;
         font-size: 1.3em;
         margin: auto;
+        color:#000;
+        font-weight: bold;
     }
     
     .list-group-item {
@@ -17,13 +19,15 @@
     .list-group {
         display: block;
         background: #f9f9f9;
-        box-shadow: 1.5px 1.5px .75px #999;
+       box-shadow: 2px 3px 17.5px #999;
         text-align: left;
         margin: 3% 0%;
+        font-weight: bold;
     }
     
     .color {
-        color: #FACB1B
+        color: #FACB1B;
+        font-weight: bold;
     }
     
     .button-list {
