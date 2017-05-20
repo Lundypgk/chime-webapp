@@ -2,6 +2,7 @@ import { BrandListingService } from './../../../services/brand-listing.service';
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-brand-add-listing',
@@ -10,13 +11,15 @@ import { Router } from '@angular/router';
 })
 export class BrandAddListingComponent implements OnInit {
   listingForm: FormGroup;
-
+  jwt: String;
+  busy: Subscription;
   
   constructor(private formBuilder: FormBuilder,
               private listingService : BrandListingService,
               private router : Router) { }
 
   ngOnInit() {
+    this.jwt = localStorage.getItem('wearechime');
     this.listingForm = this.formBuilder.group({
       description: ['', Validators.required],
       budget: ['', Validators.required],
@@ -33,10 +36,8 @@ export class BrandAddListingComponent implements OnInit {
       requirements : this.listingForm.value.requirements
     }
     if(this.listingForm.valid){
-       this.listingService.postListing(listing).subscribe(data => {
+       this.busy = this.listingService.postListing(listing,this.jwt).subscribe(data => {
           if(data.success){
-            alert("Saved into database !");
-            
             //Redirect to home page
             this.router.navigate(['/brand']);
           }

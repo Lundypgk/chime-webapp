@@ -57,7 +57,7 @@ router.post('/brand', (req, res, next) => {
         if (docs.length >= 1) {
             //Create jwt with chimerId inside
             jwt.sign({
-                chimerId: docs[0]._id
+                brandId: docs[0]._id
             }, config.secret, { expiresIn: '1h' }, function(err, token) {
 
                 if (err)

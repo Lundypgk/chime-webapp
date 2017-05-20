@@ -1,48 +1,70 @@
+//Import
 let express = require('express'),
     moment = require('moment'),
     router = express.Router(),
     config = require('../config/config'),
     ObjectID = require('mongodb').ObjectID,
-    db, jwt;
-// Listing = require('../models/listing');
+    Listing = require('../models/listing');
+
+//Variables
+let db, jwt;
 
 //Retrieve All Listing
 //*Need to configure to retrieve only the brand's listing*
 router.get('/getAllListing', (req, res, next) => {
     db = req.db;
-    db.collection('listing').find().toArray().then(function(listing) {
-        //If there is any listing
-        if (listing.length >= 1) {
+    jwt = req.jwt;
+    jwt.verify(req.query.jwt, config.secret, function(err, decoded) {
+        if (err)
             res.json({
-                success: true,
-                results: listing
+                success: false
             })
-        } else {
-            res.json({
-                success: false,
-            })
+        else {
+            db.collection('listing').find({
+                brandId: decoded.brandId
+            }).toArray().then(function(listing) {
+                //If there is any listing
+                if (listing.length >= 1) {
+                    res.json({
+                        success: true,
+                        results: listing
+                    })
+                } else {
+                    res.json({
+                        success: false,
+                    })
+                }
+            });
         }
     });
+
 });
 
 //Add Listing Router
 router.post('/addListing', (req, res, next) => {
     db = req.db;
-    // console.log(req.session.brand);
-    // let newListing = new Listing({
-    //         brandId: req.session.brand,
-    //         description: req.body.description,
-    //         budget: req.body.budget,
-    //         perks: req.body.perks,
-    //         requirements: req.body.requirements
-    //     })
-    db.collection('listing').save(req.body, (err, result) => {
-        if (err) return console.log(err);
-        res.json({
-            success: true,
-            message: "saved into database !"
-        });
-        console.log('saved to database');
+    jwt = req.jwt;
+    let data, body;
+    body = req.body.listing;
+    jwt.verify(req.body.jwt, config.secret, function(err, decoded) {
+        if (err) {
+            console.log(err)
+            res.json({
+                success: false
+            })
+        } else {
+            data = new Listing(body.description, body.budget, body.perks, body.requirements, decoded.brandId);
+            db.collection('listing').save(data, (err, result) => {
+                if (err) return console.log(err);
+                setTimeout(function() {
+                    res.json({
+                        success: true,
+                        message: "saved into database !"
+                    });
+                }, 2000);
+
+            })
+        }
     })
 });
 

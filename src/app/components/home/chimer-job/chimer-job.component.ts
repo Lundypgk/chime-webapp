@@ -38,7 +38,6 @@ export class ChimerJobComponent implements OnInit {
     job.jwt = this.jwt;
     this.busy = this.listingService.updateCurrentJob(job).subscribe(data => {
       if (data.success) {
-        alert("Success");
         location.reload();
       }
       else {

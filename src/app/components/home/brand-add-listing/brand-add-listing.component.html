@@ -1,5 +1,5 @@
 <app-brand-navbar></app-brand-navbar>
-<form [formGroup]="listingForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="listingForm" (ngSubmit)="onSubmit()" [ngBusy]="{busy: busy, message: 'Saving Data ...', backdrop: true, delay: 200, minDuration: 600}">
     <div class="form-group">
         <label for="Description">Description</label>
         <p *ngIf="listingForm.controls.description.errors" class="side-by-side validation">*Required</p>
@@ -31,5 +31,5 @@
     </div>
 
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="!listingForm.valid">Submit</button>
 </form>

@@ -9,12 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandHomeComponent implements OnInit {
   listings : any = [];
+  jwt: String;
 
   constructor(private listingService : BrandListingService,
               private router : Router) { }
 
   ngOnInit() {
-    this.listingService.retrieveListing().subscribe(data => {
+    this.jwt = localStorage.getItem('wearechime');
+    this.listingService.retrieveListing(this.jwt).subscribe(data => {
           if(data.success){
             this.listings = data.results;
           }

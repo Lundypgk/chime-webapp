@@ -10,17 +10,21 @@ export class BrandListingService {
 
   constructor(private http:Http) { }
 
-  retrieveListing(){
+  retrieveListing(jwt){
     let headers = new Headers();
+    let params: URLSearchParams = new URLSearchParams();
     headers.append('Content-Type','application/json');
-    return this.http.get(GlobalVariable.serverUrl + '/brand-listing/getAllListing',{ headers : headers})
+    params.set('jwt', jwt);
+    return this.http.get(GlobalVariable.serverUrl + '/brand-listing/getAllListing'
+                        ,{ headers : headers,
+                          search : params })
       .map(res => res.json());
   }
 
-  postListing(listing){
+  postListing(listing,jwt){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post(GlobalVariable.serverUrl + '/brand-listing/addListing',listing,{ headers : headers})
+    return this.http.post(GlobalVariable.serverUrl + '/brand-listing/addListing',{listing,jwt},{ headers : headers})
       .map(res => res.json());
   }
 
