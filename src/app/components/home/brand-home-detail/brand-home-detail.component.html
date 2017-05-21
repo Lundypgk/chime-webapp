@@ -1,5 +1,5 @@
 <app-brand-navbar></app-brand-navbar>
-<div class="wrapper">
+<div class="wrapper" [ngBusy]="{busy: busy, message: 'Retreving data ...', backdrop: true, delay: 200, minDuration: 600}">
     <div class="col-md-4 header">Budget Left</div>
     <div class="col-md-4 ">
         <div class="header"> In Progress</div>

@@ -1,6 +1,7 @@
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import { BrandListingService } from '../../../services/brand-listing.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-brand-home-detail',
@@ -10,18 +11,20 @@ import { BrandListingService } from '../../../services/brand-listing.service';
 export class BrandHomeDetailComponent implements OnInit {
   id : any;
   campaignDetails = [];
+  busy: Subscription;
+  jwt: String;
 
   constructor(private listingService : BrandListingService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.jwt = localStorage.getItem('wearechime');
     this.route
         .queryParams
         .subscribe(params => {
             this.id = params['id'];
         });
-    this.listingService.getCampaignDetail(this.id).subscribe(data => {
-      console.log(data);
+     this.busy = this.listingService.getCampaignDetail(this.id,this.jwt).subscribe(data => {
           if(data.success){
             this.campaignDetails = data.result;
           }
@@ -32,7 +35,7 @@ export class BrandHomeDetailComponent implements OnInit {
   }
 
   onApprove(data){
-    this.listingService.updateStatus(data).subscribe(data => {
+    this.listingService.updateStatus(data,this.jwt).subscribe(data => {
           if(data.success){
             alert("Success");
             location.reload();

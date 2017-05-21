@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { BrandListingService } from '../../../services/brand-listing.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-brand-home',
@@ -10,13 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class BrandHomeComponent implements OnInit {
   listings : any = [];
   jwt: String;
+  busy: Subscription;
 
   constructor(private listingService : BrandListingService,
               private router : Router) { }
 
   ngOnInit() {
     this.jwt = localStorage.getItem('wearechime');
-    this.listingService.retrieveListing(this.jwt).subscribe(data => {
+    this.busy = this.listingService.retrieveListing(this.jwt).subscribe(data => {
           if(data.success){
             this.listings = data.results;
           }

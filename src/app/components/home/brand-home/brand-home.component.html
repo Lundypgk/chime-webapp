@@ -1,5 +1,5 @@
 <app-brand-navbar></app-brand-navbar>
-<div class="div-list" (click)="onListing(listing)" *ngFor=" let listing of listings;">
+<div class="div-list" (click)="onListing(listing)" *ngFor=" let listing of listings;" [ngBusy]="{busy: busy, message: 'Retreving data ...', backdrop: true, delay: 200, minDuration: 600}">
     <div class="div-left">
         <img class="dp-list" src="../../assets/Images/tqk.jpg">
         <label [hidden]=true> {{listing._id}} </label>

@@ -35,7 +35,7 @@ export class ChimerListingService {
     .map(res => res.json());
   }
 
-  updateCurrentJob(job){
+  updateCurrentJob(job,jwt){
   let headers = new Headers();
   headers.append('Content-Type','application/json');
   return this.http.put( GlobalVariable.serverUrl + '/chimer-listing/updateCurrentJob', job , { headers : headers})
