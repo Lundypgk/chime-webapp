@@ -12,7 +12,7 @@ let express = require('express'),
 let db, jwt;
 
 /******************************************************
-//Retrieve All Listing
+Retrieve All Listing
 ******************************************************/
 
 router.get('/getAllListing', (req, res, next) => {
@@ -62,7 +62,7 @@ router.get('/getAllListing', (req, res, next) => {
 });
 
 /******************************************************
-//Add Listing Router
+Add Listing Router
 *******************************************************/
 
 router.post('/addListing', (req, res, next) => {
@@ -114,7 +114,7 @@ router.post('/addListing', (req, res, next) => {
 });
 
 /******************************************************
-//Get Chimer Details
+Get Chimer Details
 *******************************************************/
 
 router.get('/getCampaginDetails', (req, res, next) => {
@@ -181,7 +181,7 @@ router.get('/getCampaginDetails', (req, res, next) => {
 });
 
 /******************************************************
-//Update In Progress Job
+Update In Progress Job
 *******************************************************/
 
 router.put('/updateStatus', (req, res, next) => {

@@ -23,7 +23,9 @@ export class ChimerHomeComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = localStorage.getItem('wearechime');
-    this.busy = this.listingService.retrieveListing().subscribe(data => {
+    this.busy = this.listingService.retrieveListing(this.jwt).subscribe(data => {
+      console.log(data);
+
       if (data.success) {
         this.allListing = data.results;
         this.listingService.getCurrentJob(this.jwt).subscribe(data => {

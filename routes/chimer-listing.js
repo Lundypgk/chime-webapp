@@ -1,139 +1,234 @@
+//Import
 let express = require('express'),
   moment = require('moment'),
   router = express.Router(),
   config = require('../config/config'),
   ObjectID = require('mongodb').ObjectID,
-  db, jwt;
+  async = require('async'),
+  chimerListing = require('../models/chimer-listing'),
+  collection = require('../config/constant');
 
-// let applyListing = require('../models/chimer-listing');
+//Variables
+let db, jwt;
 
-//Retrieve All Listing
+/******************************************************
+Retrieve All Listing
+*******************************************************/
+
 router.get('/getAllListing', (req, res, next) => {
   db = req.db;
-  db.collection('listing').find().toArray().then(function (listing) {
-    //If there is any listing
-    if (listing.length >= 1) {
+  jwt = req.jwt;
+
+  async.waterfall([
+    verifyToken,
+    retrieveListing,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
       res.json({
-        success: true,
-        results: listing
+        success: false,
+        error: err
       })
     } else {
       res.json({
-        success: false,
+        success: true,
+        results: result
       })
     }
   });
+
+  function verifyToken(callback) {
+    jwt.verify(req.query.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function retrieveListing(decoded, callback) {
+    db.collection(collection.listingCollection).find().toArray().then(function (listing) {
+      //If there is any listing
+      if (listing.length >= 1) {
+        callback(null, listing)
+      } else {
+        callback(true);
+      }
+    });
+  }
 });
 
-//Apply for Listing
+/******************************************************
+Apply for Listing
+*******************************************************/
+
 router.post('/applyListing', (req, res, next) => {
   db = req.db;
   jwt = req.jwt;
-  jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
-    if (err)
+
+  async.waterfall([
+    verifyToken,
+    applyListing,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
       res.json({
-        success: false
+        success: false,
+        error: err
       })
-    else {
-      let listing = {
-        chimerId: decoded.chimerId,
-        listingId: req.body._id,
-        jobStatus: "InProgress",
-        perks: "",
-        instaUrl: ""
-      };
-      db.collection('chimerListing').save(listing, (err, result) => {
-        if (err) return console.log(err);
-        res.json({
-          success: true,
-          message: "saved into database !"
-        });
-        console.log('saved to database');
+    } else {
+      res.json({
+        success: true,
+        results: result
       })
     }
   });
+
+  function verifyToken(callback) {
+    jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function applyListing(decoded, callback) {
+    let listing = new chimerListing(decoded.chimerId, req.body._id, "InProgress", "", "");
+    db.collection(collection.chimerListingCollection).save(listing, (err, result) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, result);
+      }
+    })
+  }
 });
 
-//Retrieve In Progress Job
+/******************************************************
+Retrieve In Progress Job
+*******************************************************/
+
 router.get('/getCurrentJob', (req, res, next) => {
   db = req.db;
   jwt = req.jwt;
   let data = [],
     response = [];
-  let token = req.query.jwt;
-  jwt.verify(token, config.secret, function (err, decoded) {
+
+  async.waterfall([
+    verifyToken,
+    retrieveListing,
+  ], function (err, result) {
+    res.statusCode = 200;
     if (err) {
       res.json({
         success: false,
-        message: "There is something wrong with the authentication"
+        error: err
       })
     } else {
-      db.collection('chimerListing').find({
-        chimerId: decoded.chimerId
-      }).toArray().then(function (jobs) {
-        //Retrieve the list of listingId from the result 
-        for (let tempData of jobs) {
-          let listingId = new ObjectID(tempData.listingId)
-          data.push(listingId)
-        }
-        db.collection('listing').find({
-          _id: {
-            $in: data
-          }
-        }).toArray().then(function (result) {
-          for (let tempData of result) {
-            for (let tempData2 of jobs) {
-              if (tempData._id == tempData2.listingId) {
-                tempData.status = tempData2.jobStatus;
-                response.push(tempData);
-              }
-            }
-          }
-          //If there is any listing
-          if (result.length >= 1) {
-            res.json({
-              success: true,
-              results: response
-            })
-          } else {
-            res.json({
-              success: false,
-            })
-          }
-        })
-      });
+      res.json({
+        success: true,
+        results: result
+      })
     }
   });
+
+  function verifyToken(callback) {
+    jwt.verify(req.query.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  //Need to rewrite to follow async flow but for now its ok
+  function retrieveListing(decoded, callback) {
+    db.collection(collection.chimerListingCollection).find({
+      chimerId: decoded.chimerId
+    }).toArray().then(function (jobs) {
+      //Retrieve the list of listingId from the result 
+      for (let tempData of jobs) {
+        let listingId = new ObjectID(tempData.listingId)
+        data.push(listingId)
+      }
+      db.collection('listing').find({
+        _id: {
+          $in: data
+        }
+      }).toArray().then(function (result) {
+        for (let tempData of result) {
+          for (let tempData2 of jobs) {
+            if (tempData._id == tempData2.listingId) {
+              tempData.status = tempData2.jobStatus;
+              response.push(tempData);
+            }
+          }
+        }
+        //If there is any listing
+        if (result.length >= 1) {
+          callback(null, response);
+        } else {
+          callback(true);
+        }
+      })
+    });
+  }
 });
 
-//Update In Progress Job
+/******************************************************
+Update In Progress Job
+*******************************************************/
+
 router.put('/updateCurrentJob', (req, res, next) => {
   db = req.db;
   jwt = req.jwt;
-  let token = req.body.jwt;
-  jwt.verify(token, config.secret, function (err, decoded) {
+
+  async.waterfall([
+    verifyToken,
+    updateListing,
+  ], function (err, result) {
+    res.statusCode = 200;
     if (err) {
       res.json({
         success: false,
-        message: "There is something wrong with the authentication"
+        error: err
       })
-    } else
-      db.collection('chimerListing').update({
-        chimerId: decoded.chimerId,
-        listingId: req.body._id,
-      }, {
-        $set: {
-          jobStatus: "Approval",
-          instaUrl: req.body.url,
-          lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
-        }
-      }).then(function (result) {
-        res.json({
-          success: true,
-          results: result
-        })
+    } else {
+      res.json({
+        success: true,
+        results: result
       })
+    }
   });
+
+  function verifyToken(callback) {
+    jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function updateListing(decoded, callback) {
+    db.collection(collection.chimerListingCollection).update({
+      chimerId: decoded.chimerId,
+      listingId: req.body._id,
+    }, {
+      $set: {
+        jobStatus: "Approval",
+        instaUrl: req.body.url,
+        lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
+      }
+    }).then(function (result) {
+      callback(null, result)
+    })
+  }
 });
 
 

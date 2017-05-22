@@ -8,10 +8,16 @@ export class ChimerListingService {
 
   constructor(private http: Http) { }
 
-  retrieveListing() {
+  retrieveListing(jwt) {
     let headers = new Headers();
+    let params: URLSearchParams = new URLSearchParams();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(GlobalVariable.serverUrl + '/chimer-listing/getAllListing', { headers: headers })
+    params.set('jwt', jwt);
+    return this.http.get(GlobalVariable.serverUrl + '/chimer-listing/getAllListing'
+      , {
+        headers: headers,
+        search: params
+      })
       .map(res => res.json());
   }
 

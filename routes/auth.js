@@ -8,7 +8,9 @@ let express = require('express'),
 //Variables  
 let db, jwt;
 
-//Login Router for chimer
+/******************************************************
+Login Router for chimer
+******************************************************/
 router.post('/chimer', (req, res, next) => {
   //Retrieve database connection
   db = req.db;
@@ -62,7 +64,10 @@ router.post('/chimer', (req, res, next) => {
   }
 });
 
-//Login Router brand
+/******************************************************
+Login Router brand
+******************************************************/
+
 router.post('/brand', (req, res, next) => {
   //Retrieve database connection
   db = req.db;
