@@ -12,16 +12,16 @@ export class LoginGuard implements CanActivate {
 
     }
 
-    canActivate() {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        console.log(state)
         return this.checkIfLoggedIn();
     }
 
     private checkIfLoggedIn(): boolean {
 
         // let loggedIn: boolean = Math.random() < 0.5;
-        let loggedIn: boolean, jwt: String;
-        jwt = localStorage.getItem('wearechime');
-
+        let loggedIn: boolean;
+        let jwt = { 'jwt': localStorage.getItem('wearechime') };
         if (!jwt) {
             this._service.error(
                 'Error',

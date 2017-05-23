@@ -11,6 +11,7 @@ export class AuthService {
     isUserLoggedIn(jwt) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(GlobalVariable.serverUrl + '/auth/isUserLoggedIn');
         return this.http.post(GlobalVariable.serverUrl + '/auth/isUserLoggedIn', jwt, { headers: headers })
             .map(res => res.json());
     }
