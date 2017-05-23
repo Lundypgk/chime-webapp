@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotificationsService } from "angular2-notifications";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
 }

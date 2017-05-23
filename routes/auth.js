@@ -121,6 +121,23 @@ router.post('/brand', (req, res, next) => {
   }
 });
 
+router.post('/isUserLoggedIn', (req, res, next) => {
+  //Retrieve jwt
+  console.log(req.body);
+  jwt = req.jwt;
+  jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
+    if (err) {
+      res.json({
+        result: false
+      })
+    } else {
+      res.json({
+        result: true
+      })
+    }
+  });
+});
+
 router.get('/logout', (req, res, next) => {});
 
 module.exports = router;
