@@ -1,7 +1,7 @@
 import { UserLoginService } from './../../services/user-login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationsService } from "angular2-notifications";
 
@@ -18,10 +18,11 @@ export class LoginComponent implements OnInit {
     position: ["bottom", "left"],
     timeOut: 5000,
     lastOnBottom: true
-  }
+  };
 
   constructor(private formBuilder: FormBuilder,
     private loginService: UserLoginService,
+    private route: ActivatedRoute,
     private router: Router,
     private _service: NotificationsService) { }
 

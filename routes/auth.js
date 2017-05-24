@@ -52,7 +52,8 @@ router.post('/chimer', (req, res, next) => {
 
   function assignToken(result, callback) {
     jwt.sign({
-      chimerId: result[0]._id
+      chimerId: result[0]._id,
+      isChimer: true
     }, config.secret, {
       expiresIn: '1h'
     }, function (err, token) {
@@ -109,7 +110,8 @@ router.post('/brand', (req, res, next) => {
 
   function assignToken(result, callback) {
     jwt.sign({
-      brandId: result[0]._id
+      brandId: result[0]._id,
+      isChimer: false
     }, config.secret, {
       expiresIn: '1h'
     }, function (err, token) {
@@ -132,7 +134,8 @@ router.post('/isUserLoggedIn', (req, res, next) => {
       })
     } else {
       res.json({
-        result: true
+        result: true,
+        isChimer: decoded.isChimer
       })
     }
   });

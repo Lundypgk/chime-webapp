@@ -19,17 +19,18 @@ import { UserLoginService } from './services/user-login.service';
 import { BrandListingService } from './services/brand-listing.service';
 import { ChimerNavbarComponent } from './components/chimer-navbar/chimer-navbar.component';
 import { ChimerJobComponent } from './components/home/chimer-job/chimer-job.component';
-import { LoginGuard } from "./guard/login.guard";
+import { ChimerLoginGuard } from "./guard/chimer-login.guard";
 import { AuthService } from "./services/auth.service";
+import { BrandLoginGuard } from "app/guard/brand-login.guard";
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'brand', component: BrandHomeComponent },
-  { path: 'brand/listing/:id', component: BrandHomeDetailComponent },
-  { path: 'brand/add-listing', component: BrandAddListingComponent },
-  { path: 'chimer', component: ChimerHomeComponent },
-  { path: 'chimer/jobs', component: ChimerJobComponent }
+  { path: 'brand', component: BrandHomeComponent, canActivate: [BrandLoginGuard] },
+  { path: 'brand/listing/:id', component: BrandHomeDetailComponent, canActivate: [BrandLoginGuard] },
+  { path: 'brand/add-listing', component: BrandAddListingComponent, canActivate: [BrandLoginGuard] },
+  { path: 'chimer', component: ChimerHomeComponent, canActivate: [ChimerLoginGuard] },
+  { path: 'chimer/jobs', component: ChimerJobComponent, canActivate: [ChimerLoginGuard] }
 ]
 
 @NgModule({
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [ChimerListingService, BrandListingService, UserLoginService, AuthService, LoginGuard],
+  providers: [ChimerListingService, BrandListingService, UserLoginService, AuthService, ChimerLoginGuard, BrandLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
