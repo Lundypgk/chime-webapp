@@ -13,5 +13,12 @@ export class PaymentService {
         headers.append('Content-Type', 'application/json');
         return this.http.get(GlobalVariable.serverUrl + '/payment/client-token')
             .map(res => res.json());
-    }
+    };
+
+    checkOut(nonce) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(GlobalVariable.serverUrl + '/payment/checkout', nonce)
+            .map(res => res.json());
+    };
 }

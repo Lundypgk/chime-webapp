@@ -12,5 +12,11 @@ router.get("/client-token", function (req, res) {
   });
 });
 
+router.post("/checkout", function (req, res) {
+  let nonceFromClient = req.body.nonce;
+  console.log(nonceFromClient);
+});
+
+
 
 module.exports = router;

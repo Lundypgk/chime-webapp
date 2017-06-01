@@ -7,6 +7,7 @@ import { PaymentService } from "app/services/payment.service";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
   dropin = require('braintree-web-drop-in');
   clientToken: String;
 
@@ -27,6 +28,26 @@ export class PaymentComponent implements OnInit {
         flow: 'vault'
       }
     }, function (err, instance) {
+      //Listen to the payment method 
+      instance.on('paymentMethodRequestable', function (event) {
+        console.log(event.type); // The type of Payment Method, e.g 'CreditCard', 'PayPalAccount'.
+        //Initate the payment
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            console.log(err)
+          }
+          else {
+            console.log("payload" + payload.nonce);
+            this.paymentService.checkOut(payload).subscribe(data => {
+
+            })
+          }
+        });
+      });
     });
+  }
+
+  submitPayment() {
+
   }
 }
