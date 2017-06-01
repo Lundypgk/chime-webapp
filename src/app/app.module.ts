@@ -22,6 +22,8 @@ import { ChimerJobComponent } from './components/home/chimer-job/chimer-job.comp
 import { ChimerLoginGuard } from "./guard/chimer-login.guard";
 import { AuthService } from "./services/auth.service";
 import { BrandLoginGuard } from "app/guard/brand-login.guard";
+import { PaymentComponent } from './components/home/payment/payment.component';
+import { PaymentService } from "app/services/payment.service";
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
   { path: 'brand/listing/:id', component: BrandHomeDetailComponent, canActivate: [BrandLoginGuard] },
   { path: 'brand/add-listing', component: BrandAddListingComponent, canActivate: [BrandLoginGuard] },
   { path: 'chimer', component: ChimerHomeComponent, canActivate: [ChimerLoginGuard] },
-  { path: 'chimer/jobs', component: ChimerJobComponent, canActivate: [ChimerLoginGuard] }
+  { path: 'chimer/jobs', component: ChimerJobComponent, canActivate: [ChimerLoginGuard] },
+  { path: 'payment', component: PaymentComponent }
 ]
 
 @NgModule({
@@ -43,7 +46,8 @@ const appRoutes: Routes = [
     BrandHomeDetailComponent,
     ChimerHomeComponent,
     ChimerNavbarComponent,
-    ChimerJobComponent
+    ChimerJobComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [ChimerListingService, BrandListingService, UserLoginService, AuthService, ChimerLoginGuard, BrandLoginGuard],
+  providers: [ChimerListingService, BrandListingService, UserLoginService, AuthService, PaymentService, ChimerLoginGuard, BrandLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

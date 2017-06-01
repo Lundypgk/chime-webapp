@@ -10,8 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build --prod"
+    "preinstall": "npm install -g http-server"
   },
   "engines": {
     "node": "6.9.5",
@@ -33,6 +32,7 @@
     "async": "^2.4.0",
     "bcryptjs": "*",
     "body-parser": "*",
+    "braintree-web-drop-in": "^1.2.0",
     "codelyzer": "~1.0.0-beta.3",
     "connect-flash": "^0.1.1",
     "core-js": "^2.4.1",

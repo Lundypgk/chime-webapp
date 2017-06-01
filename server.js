@@ -6,6 +6,7 @@ let express = require('express'),
   expressSession = require('express-session'),
   morgan = require('morgan'),
   jwt = require('jsonwebtoken'),
+  braintree = require("braintree"),
   db;
 
 let app = express();
@@ -13,10 +14,20 @@ let app = express();
 //Import Routes
 let auth = require('./routes/auth'),
   chimerListing = require('./routes/chimer-listing'),
-  brandListing = require('./routes/brand-listing');
+  brandListing = require('./routes/brand-listing'),
+  payment = require('./routes/payment');
 
 //Specifies the port number
 let port = process.env.PORT || 3000;
+
+//BrainTree Config
+let gateway = braintree.connect({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "pkvh8jgm74gj35xq",
+  publicKey: "37svr9pvrrmkwvv4",
+  privateKey: "bd1a7e81d44e005846911f36e271042a"
+});
+
 
 //CORS Middleware
 app.use(cors());
@@ -49,6 +60,7 @@ MongoClient.connect(config.database, (err, database) => {
 app.use(function (req, res, next) {
   req.db = db;
   req.jwt = jwt;
+  req.gateway = gateway;
   next();
 });
 
@@ -56,6 +68,7 @@ app.use(function (req, res, next) {
 app.use('/auth', auth);
 app.use('/chimer-listing', chimerListing);
 app.use('/brand-listing', brandListing);
+app.use('/payment', payment);
 
 //Index Route
 app.get('/', (req, res) => {
