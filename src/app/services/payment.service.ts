@@ -18,7 +18,7 @@ export class PaymentService {
     checkOut(nonce) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(GlobalVariable.serverUrl + '/payment/checkout', nonce)
+        return this.http.post(GlobalVariable.serverUrl + '/payment/checkout', nonce, headers)
             .map(res => res.json());
     };
 }

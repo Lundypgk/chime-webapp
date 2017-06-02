@@ -1,0 +1,9 @@
+#dropin-container {
+  width: 50%;
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
