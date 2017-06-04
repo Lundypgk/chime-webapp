@@ -33,7 +33,8 @@ const appRoutes: Routes = [
   { path: 'brand/add-listing', component: BrandAddListingComponent, canActivate: [BrandLoginGuard] },
   { path: 'chimer', component: ChimerHomeComponent, canActivate: [ChimerLoginGuard] },
   { path: 'chimer/jobs', component: ChimerJobComponent, canActivate: [ChimerLoginGuard] },
-  { path: 'payment', component: PaymentComponent }
+  { path: 'payment', component: PaymentComponent },
+  { path: '**', redirectTo: '/' }
 ]
 
 @NgModule({
