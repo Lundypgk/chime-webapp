@@ -9,26 +9,30 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./brand-home.component.css']
 })
 export class BrandHomeComponent implements OnInit {
-  listings : any = [];
+  listings: any = [];
   jwt: String;
   busy: Subscription;
 
-  constructor(private listingService : BrandListingService,
-              private router : Router) { }
+  constructor(private listingService: BrandListingService,
+    private router: Router) { }
 
   ngOnInit() {
     this.jwt = localStorage.getItem('wearechime');
     this.busy = this.listingService.retrieveListing(this.jwt).subscribe(data => {
-          if(data.success){
-            this.listings = data.results;
-          }
-          else{
-            //No data
-          }
-       });
+      if (data.success) {
+        this.listings = data.results;
+      }
+      else {
+        //No data
+      }
+    });
   }
 
-  onListing(listing){
-    this.router.navigate(['brand/listing/:id'], { queryParams:{ id: listing._id } });
+  onListing(listing) {
+    this.router.navigate(['brand/listing/:id'], { queryParams: { id: listing._id } });
+  }
+
+  onPayment() {
+    this.router.navigate(['payment']);
   }
 }
