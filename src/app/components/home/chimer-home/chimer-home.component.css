@@ -56,28 +56,6 @@
 
 /* start of the right side of the page*/
 
-.div-Instruction {
-    float: left;
-    width: 40%;
-    margin: 0% 2%;
-
-    display: block;
-       background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
-    box-shadow: 2px 3px 17.5px #999;
- 
-    padding: 10px;
-    float: left;
-
-    padding: 2%;
-    font-weight: bold;
-}
-.text-center
-{
-  color:#FACB1B;
-  font-weight: bold;
-  -webkit-text-stroke: 1px #FACB1B;
-  margin: 0px 0px 15px;
-}
 /*End of right side of the page*/
 /*start of left side of the page*/
 
