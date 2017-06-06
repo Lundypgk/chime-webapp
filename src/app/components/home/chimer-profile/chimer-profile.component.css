@@ -1,0 +1,74 @@
+.c-wrapper{
+    width: 40%;
+    float: left;
+    display: block;
+    margin: 0% 2% 2%;
+}
+
+
+.div-profile{
+      display: block;
+       background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
+    box-shadow: 2px 3px 17.5px #999;
+    float: left;
+    width: 100%;
+    padding: 2% 2% 2% 4%;
+    
+
+}
+.cDP {
+        vertical-align: middle;
+    width: 140px;
+    border-radius: 200px;
+    height: 140px;
+    float: left;
+}
+.cProfile{
+        float: left;
+    margin: 1% 5%;
+    font-size: 1.1em;
+    width: 50%;
+}
+
+
+.div-Instruction {
+    float: left;
+    width: 100%;
+    margin-top: 3%;
+
+    display: block;
+       background: linear-gradient(#fff, #FDFDFD, #F7F7F7);
+    box-shadow: 2px 3px 17.5px #999;
+ 
+    padding: 10px;
+    float: left;
+
+    padding: 2%;
+    font-weight: bold;
+}
+.text-center
+{
+  color:#FACB1B;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #FACB1B;
+  margin: 0px 0px 15px;
+}
+.p-Button{
+      border-radius: 25px;
+  display: inline-block;
+  color: #fff;
+  padding: 0px 20px 0 20px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #000;
+  background: #FACB1B;
+  border: 1px solid #FACB1B;
+  border-radius: 20px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  /* margin-top: 50px; */
+  float: right !important;
+}
