@@ -28,6 +28,21 @@ export class ChimerListingService {
       .map(res => res.json());
   }
 
+  retrieveChimerDetail(jwt) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('jwt', jwt);
+    return this.http.get(GlobalVariable.serverUrl + '/chimer-listing/retrieveChimerDetail',
+      {
+        headers: headers,
+        search: params
+      })
+      .map(res => res.json());
+  }
+
+
+
   getCurrentJob(jwt) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

@@ -24,7 +24,7 @@ import { AuthService } from "./services/auth.service";
 import { BrandLoginGuard } from "app/guard/brand-login.guard";
 import { PaymentComponent } from './components/home/payment/payment.component';
 import { PaymentService } from "app/services/payment.service";
-
+import { chimerProfileComponent  } from "./components/home/chimer-profile/chimer-profile.component"
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -48,7 +48,8 @@ const appRoutes: Routes = [
     ChimerHomeComponent,
     ChimerNavbarComponent,
     ChimerJobComponent,
-    PaymentComponent
+    PaymentComponent,
+    chimerProfileComponent
   ],
   imports: [
     BrowserModule,

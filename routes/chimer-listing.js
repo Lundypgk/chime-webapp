@@ -12,6 +12,60 @@ let express = require('express'),
 let db, jwt;
 
 /******************************************************
+Retrieve Chimer Details
+*******************************************************/
+
+router.get('/retrieveChimerDetail', (req, res, next) => {
+  db = req.db;
+  jwt = req.jwt;
+
+  async.waterfall([
+    verifyToken,
+    retrieveData,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      })
+    } else {
+      res.json({
+        success: true,
+        results: result
+      })
+    }
+  });
+
+  function verifyToken(callback) {
+    jwt.verify(req.query.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function retrieveData(decoded, callback) {
+    console.log(decoded);
+    let id = new ObjectID(decoded.chimerId)
+    db.collection(collection.chimerCollection).find({
+      _id : id
+    }).toArray().then(function (listing) {
+      //If there is any listing
+      if (listing.length >= 1) {
+        callback(null, listing)
+      } else {
+        callback(true);
+      }
+    });
+  }
+});
+
+
+
+/******************************************************
 Retrieve All Listing
 *******************************************************/
 
