@@ -35,15 +35,17 @@ export class ChimerJobComponent implements OnInit {
 
   onSubmit(job, url) {
     job.url = url;
+    console.log(job);
     job.jwt = this.jwt;
-    this.busy = this.listingService.updateCurrentJob(job).subscribe(data => {
-      if (data.success) {
-        location.reload();
-      }
-      else {
-        //No data
-      }
-    });
+    console.log(job.jwt);
+    // this.busy = this.listingService.updateCurrentJob(job).subscribe(data => {
+    //   if (data.success) {
+    //     location.reload();
+    //   }
+    //   else {
+    //     //No data
+    //   }
+    // });
   }
 
 }

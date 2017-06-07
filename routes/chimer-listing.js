@@ -48,7 +48,6 @@ router.get('/retrieveChimerDetail', (req, res, next) => {
   };
 
   function retrieveData(decoded, callback) {
-    console.log(decoded);
     let id = new ObjectID(decoded.chimerId)
     db.collection(collection.chimerCollection).find({
       _id : id
@@ -284,6 +283,68 @@ router.put('/updateCurrentJob', (req, res, next) => {
     })
   }
 });
+
+
+/******************************************************
+Update Profile
+*******************************************************/
+
+router.put('/updateProfile', (req, res, next) => {
+  db = req.db;
+  jwt = req.jwt;
+
+  async.waterfall([
+    verifyToken,
+    updateProfile,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      })
+    } else {
+      res.json({
+        success: true,
+        results: result
+      })
+    }
+  });
+
+  function verifyToken(callback) {
+    jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function updateProfile(decoded, callback) {
+    let id = new ObjectID(decoded.chimerId)
+    console.log(req.body);
+    db.collection(collection.chimerCollection).update({ _id: id}
+    ,{
+      $set: {
+        Email: req.body.Email,
+        Street: req.body.Street,
+        Postal: req.body.Postal,
+        Unit: req.body.Unit,
+        Mobile: req.body.Mobile,
+        Bank: req.body.Bank,
+        lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
+    
+      }
+    }).then(function (result) {
+      callback(null, result)
+    })
+  }
+});
+
+
+
+
 
 
 

@@ -27,7 +27,7 @@
         float: left;
     margin: 1% 5%;
     font-size: 1.1em;
-    width: 50%;
+    width: 60%;
 }
 
 
@@ -71,4 +71,17 @@
   position: relative;
   /* margin-top: 50px; */
   float: right !important;
+}
+.p-Edit{
+   float: right;
+    height: 25px;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: #facb1b;
+    font-weight: bold;
+}
+.p-Edit:hover,
+.p-Edit:active{
+    color:black;
 }

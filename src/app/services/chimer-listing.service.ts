@@ -63,6 +63,13 @@ export class ChimerListingService {
       .map(res => res.json());
   }
 
+  updateProfile(profile) {
+     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(GlobalVariable.serverUrl + '/chimer-listing/updateProfile', profile, { headers: headers })
+      .map(res => res.json());
+  }
+
   logOut() {
     return this.http.get(GlobalVariable.serverUrl + '/login/logout')
       .map(res => res.json());
