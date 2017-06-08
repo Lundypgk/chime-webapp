@@ -15,7 +15,8 @@ let app = express();
 let auth = require('./routes/auth'),
   chimerListing = require('./routes/chimer-listing'),
   brandListing = require('./routes/brand-listing'),
-  payment = require('./routes/payment');
+  payment = require('./routes/payment'),
+  instagram = require('./routes/instagram');
 
 //Specifies the port number
 let port = process.env.PORT || 3000;
@@ -69,6 +70,7 @@ app.use('/auth', auth);
 app.use('/chimer-listing', chimerListing);
 app.use('/brand-listing', brandListing);
 app.use('/payment', payment);
+app.use('/instagram', instagram);
 
 //Index Route
 app.get('/', (req, res) => {

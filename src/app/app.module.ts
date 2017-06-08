@@ -24,7 +24,10 @@ import { AuthService } from "./services/auth.service";
 import { BrandLoginGuard } from "app/guard/brand-login.guard";
 import { PaymentComponent } from './components/home/payment/payment.component';
 import { PaymentService } from "app/services/payment.service";
-import { chimerProfileComponent  } from "./components/home/chimer-profile/chimer-profile.component"
+import { chimerProfileComponent } from "./components/home/chimer-profile/chimer-profile.component";
+import { InstagramComponent } from './components/home/instagram/instagram.component';
+import { InstagramService } from "app/services/instagram.service";
+
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -34,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'chimer', component: ChimerHomeComponent, canActivate: [ChimerLoginGuard] },
   { path: 'chimer/jobs', component: ChimerJobComponent, canActivate: [ChimerLoginGuard] },
   { path: 'payment', component: PaymentComponent },
+  { path: 'instagram', component: InstagramComponent },
   { path: '**', redirectTo: '/' }
 ]
 
@@ -49,7 +53,8 @@ const appRoutes: Routes = [
     ChimerNavbarComponent,
     ChimerJobComponent,
     PaymentComponent,
-    chimerProfileComponent
+    chimerProfileComponent,
+    InstagramComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { useHash: true }),
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [ChimerListingService, BrandListingService, UserLoginService, AuthService, PaymentService, ChimerLoginGuard, BrandLoginGuard],
+  providers: [ChimerListingService,
+    BrandListingService,
+    UserLoginService,
+    AuthService,
+    PaymentService,
+    InstagramService,
+    ChimerLoginGuard,
+    BrandLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
