@@ -16,7 +16,7 @@
     <img src="../../../assets/Images/chimemaybe-black.png" alt="">
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" [ngBusy]="{busy: busy, message: 'Logging in ...', backdrop: true, delay: 200, minDuration: 600}">
       <div class="form-group">
-        <input class="form-control" type="text" name="u" placeholder="Username" required="required" formControlName="username" />
+        <input class="form-control" type="text" name="u" placeholder="Email" required="required" formControlName="email" />
       </div>
       <div class="form-group">
         <input class="form-control" type="password" name="p" placeholder="Password" required="required" formControlName="password"

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: [''],
+      email: [''],
       password: [''],
       user: ['chimer'] // setting the default value
     });
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     let credentials = {
-      username: this.loginForm.value.username,
+      email: this.loginForm.value.email,
       password: this.loginForm.value.password
     }
     if (this.loginForm.valid) {
@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
       }
     }
 
-    else if (this.loginForm.value.username == "" || this.loginForm.value.password == "") {
+    else if (this.loginForm.value.email == "" || this.loginForm.value.password == "") {
       this._service.error(
         'Error',
         'Please enter your credentials',

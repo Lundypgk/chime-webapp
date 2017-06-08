@@ -1,6 +1,6 @@
 module.exports = {
-  chimerCollection: "chimeUser",
-  brandCollection: "brand",
-  listingCollection: "listing",
-  chimerListingCollection: "chimerListing"
+  chimerCollection: "chimers",
+  brandCollection: "brands",
+  listingCollection: "listings",
+  chimerListingCollection: "chimerListings"
 }

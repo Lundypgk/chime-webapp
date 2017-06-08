@@ -3,10 +3,13 @@ let express = require('express'),
   router = express.Router(),
   config = require('../config/config'),
   async = require('async'),
+  bcrypt = require('bcrypt'),
   collection = require('../config/constant');
 
 //Variables  
 let db, jwt;
+//Variable
+const saltRounds = 10; // For hashing the password
 
 /******************************************************
 Login Router for chimer
@@ -20,6 +23,7 @@ router.post('/chimer', (req, res, next) => {
 
   async.waterfall([
     checkUserExist,
+    comparePassword,
     assignToken,
   ], function (err, result) {
     res.statusCode = 200;
@@ -35,10 +39,10 @@ router.post('/chimer', (req, res, next) => {
     }
   });
 
+  //Just retrieving the user based on the email first
   function checkUserExist(callback) {
     db.collection(collection.chimerCollection).find({
-      Username: req.body.username,
-      Password: req.body.password
+      email: req.body.email,
     }).toArray().then(function (docs) {
       //If there is such user
       if (docs.length >= 1) {
@@ -50,6 +54,20 @@ router.post('/chimer', (req, res, next) => {
     })
   }
 
+  //Compare the password to see if it matches
+  function comparePassword(docs, callback) {
+    bcrypt.compare(req.body.password, docs[0].password, function (err, res) {
+      if (res) {
+        //Password match
+        callback(null, docs);
+      } else {
+        //Password does not match
+        callback(true);
+      }
+    });
+  }
+
+  //Password matches and assign token
   function assignToken(result, callback) {
     jwt.sign({
       chimerId: result[0]._id,
@@ -78,6 +96,7 @@ router.post('/brand', (req, res, next) => {
 
   async.waterfall([
     checkUserExist,
+    comparePassword,
     assignToken,
   ], function (err, result) {
     res.statusCode = 200;
@@ -93,10 +112,10 @@ router.post('/brand', (req, res, next) => {
     }
   });
 
+  //Just retrieving the user based on the email first
   function checkUserExist(callback) {
     db.collection(collection.brandCollection).find({
-      Username: req.body.username,
-      Password: req.body.password
+      email: req.body.email,
     }).toArray().then(function (docs) {
       //If there is such user
       if (docs.length >= 1) {
@@ -108,6 +127,20 @@ router.post('/brand', (req, res, next) => {
     })
   }
 
+  //Compare the password to see if it matches
+  function comparePassword(docs, callback) {
+    bcrypt.compare(req.body.password, docs[0].password, function (err, res) {
+      if (res) {
+        //Password match
+        callback(null, docs);
+      } else {
+        //Password does not match
+        callback(true);
+      }
+    });
+  }
+
+  //Password matches and assign token
   function assignToken(result, callback) {
     jwt.sign({
       brandId: result[0]._id,
