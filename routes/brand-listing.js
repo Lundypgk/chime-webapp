@@ -230,4 +230,61 @@ router.put('/updateStatus', (req, res, next) => {
   }
 });
 
+/******************************************************
+Update Listing
+*******************************************************/
+
+router.put('/updateListing', (req, res, next) => {
+  db = req.db;
+  jwt = req.jwt;
+
+  async.waterfall([
+    verifyToken,
+    updateListing,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      })
+    } else {
+      res.json({
+        success: true,
+        results: result
+      })
+    }
+  });
+
+  function verifyToken(callback) {
+    
+    jwt.verify(req.body.update.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, decoded);
+      }
+    });
+  };
+
+  function updateListing(decoded, callback) {
+    
+    let id = new ObjectID(req.body.update._id);
+     db.collection(collection.listingCollection).update({
+       _id: id
+     }, {
+       $set: {
+        description: req.body.update.description,
+        perks: req.body.update.perks,
+        requirements: req.body.update.requirements
+      }
+    }).then(function (result) {
+      callback(null, result);
+    })
+  }
+});
+
+
+
+
 module.exports = router;

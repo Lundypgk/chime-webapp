@@ -50,4 +50,10 @@ export class BrandListingService {
     return this.http.put(GlobalVariable.serverUrl + '/brand-listing/updateStatus', { data, jwt }, { headers: headers })
       .map(res => res.json());
   }
+  UpdateListing(update){
+     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(GlobalVariable.serverUrl + '/brand-listing/updateListing', { update }, { headers: headers })
+      .map(res => res.json());
+  }
 }

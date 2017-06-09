@@ -12,6 +12,27 @@ export class BrandHomeComponent implements OnInit {
   listings: any = [];
   jwt: String;
   busy: Subscription;
+ // test:string;
+  //store updates
+    updates:any = {} ;
+
+  editJob(perk , require, desc){
+    this.updates = this.listings[0];
+    this.updates.jwt = this.jwt;
+    this.updates.description = desc;
+    this.updates.requirements = require;
+    this.updates.perks = perk;
+    console.log(this.updates);
+    this.busy = this.listingService.UpdateListing(this.updates).subscribe(data => {
+      if (data.success) {
+       location.reload(); 
+      }
+      else
+      {
+        //null
+      }
+    });
+  }
 
   constructor(private listingService: BrandListingService,
     private router: Router) { }

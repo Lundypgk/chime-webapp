@@ -1,19 +1,38 @@
 <app-brand-navbar></app-brand-navbar>
-<div class="div-list" (click)="onListing(listing)" *ngFor=" let listing of listings;" [ngBusy]="{busy: busy, message: 'Retreving data ...', backdrop: true, delay: 200, minDuration: 600}">
+<div class="div-list" *ngFor=" let listing of listings;" [ngBusy]="{busy: busy, message: 'Retreving data ...', backdrop: true, delay: 200, minDuration: 600}">
   <div class="div-left">
     <img class="dp-list" src="../../assets/Images/tqk.jpg">
     <label [hidden]=true> {{listing._id}} </label>
   </div>
   <div class="status">
-    <button (click)="onPayment()"> Not Verified
+    <button (click)="onPayment()"> Unverified job
     </button>
+    <br>
+    <button (click)="onListing(listing)"> View job
+    </button><br>
+ 
+ 
+     <button (click)="editJob(perk.value, require.value, desc.value)"> Edit job
+    </button>
+ 
+
   </div>
   <div class="div-right">
     <label>Campaign Name:<span class="color"> The Quay Kitchen</span></label>
-    <label>Perks: <br /><span class="color">{{listing.perks}}</span></label>
-    <label>Requirements: <br /><span class="color">{{listing.requirements}}</span></label>
+    <input value="The Quay kitchen" >
 
+    <label>Perks: <br /><span class="color">{{listing.perks}}</span></label>
+    <input value={{listing.perks}} #perk >
+
+
+
+    <label>Requirements: <br /><span class="color">{{listing.requirements}}</span></label>
+    <input value={{listing.requirements}} #require>
     <label> Description: <br /><span class="color">{{listing.description}}</span></label>
+    <input value={{listing.description}} #desc>
+    
     <label>Budget: <span class="color">{{listing.budget}}</span></label>
+    <input value={{listing.budget}} >
+    
   </div>
 </div>

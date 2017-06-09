@@ -323,7 +323,7 @@ router.put('/updateProfile', (req, res, next) => {
 
   function updateProfile(decoded, callback) {
     let id = new ObjectID(decoded.chimerId)
-    console.log(req.body);
+    console.log(req.body.jwt);
     db.collection(collection.chimerCollection).update({ _id: id}
     ,{
       $set: {
