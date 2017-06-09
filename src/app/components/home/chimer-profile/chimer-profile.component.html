@@ -1,106 +1,76 @@
 <div class="c-wrapper">
-<div class="div-profile">   
+  <div class="div-profile">
     <h2 class="text-center">Your Profile:</h2>
-    <img class="cDP" src="../../../assets/Images/anythingforshane.png">
-    <div class="cProfile" *ngFor="let user of Data"><!--  -->
-        <label>Name:</label>         
-        <label>{{user.FirstName}} {{user.LastName}}</label>
-        <br>
-        
-        <label>Email:</label>        
-        <label *ngIf="!editingEmail">{{user.Email}}</label> 
-        <input [(ngModel)]="newEmail" *ngIf="editingEmail" type="email" > <!--  -->
-      
-        <button 
-        *ngIf="!editingEmail"
-        [style.display]="!editing? 'none' : 'inherit'" 
-        (click)="editEmail()" 
-        class="p-Edit">Edit</button>
-        <button 
-        *ngIf="editingEmail" 
-        class="p-Edit"
-        (click)="submitEmail()"
-        >
-        Done</button>
-        <br> 
-        
-        <label>Mobile:</label>       
-        <label *ngIf="!editingMobile">{{user.Mobile}}</label> 
-        <input [(ngModel)]="newMobile" *ngIf="editingMobile" type="text" minlength="8" maxlength="8" >
-        <button 
-        *ngIf="!editingMobile"
-        [style.display]="!editing? 'none' : 'inherit'" 
-        (click)="editMobile()" 
-        class="p-Edit">Edit</button>
-        <button 
-        *ngIf="editingMobile" 
-        class="p-Edit"
-        (click)="submitMobile()"
-        >
-        Done</button>
-        <br>
-        
-        <label>Address:</label>  
-        <button 
-        *ngIf="!editingAddress"
-        [style.display]="!editing? 'none' : 'inherit'" 
-        (click)="editAddress()" 
-        class="p-Edit">Edit</button>
-        <button 
-        *ngIf="editingAddress" 
-        class="p-Edit"
-        (click)="submitAddress()"
-        >
-        Done</button>
-        <br>
-      
-        <label *ngIf="!editingAddress">{{user.Street}} </label>
-        <input [(ngModel)]="newStreet" *ngIf="editingAddress" type="text" placeholder="Street" > <br>
-        <label *ngIf="!editingAddress">{{user.Postal}} </label>
-        <input [(ngModel)]="newPostal" *ngIf="editingAddress" type="text" placeholder="Postal Code" > <br>
-        <label *ngIf="!editingAddress">{{user.Unit}} </label> 
-        <input [(ngModel)]="newUnit" *ngIf="editingAddress" type="text" placeholder="Unit Number" > <br>
-        
-        <label>Followers:</label>       
-        <label>have yet to be added</label>
-        <br>
+    <!--<img class="cDP" src="../../../assets/Images/anythingforshane.png">-->
+    <div class="cProfile" *ngFor="let user of Data">
+      <!--  -->
+      <label>Name:</label>
+      <label>{{user.FirstName}} {{user.LastName}}</label>
+      <br>
 
-       <label>Bank:</label>       
-        <label *ngIf="!editingBank">{{user.Bank}}</label> 
-        <input [(ngModel)]="newBank" *ngIf="editingBank" type="text" minlength="8" maxlength="8" >
-        <button 
-        *ngIf="!editingBank"
-        [style.display]="!editing? 'none' : 'inherit'" 
-        (click)="editBank()" 
-        class="p-Edit">Edit</button>
-        <button 
-        *ngIf="editingBank" 
-        class="p-Edit"
-        (click)="submitBank()"
-        >
+      <label>Email:</label>
+      <label *ngIf="!editingEmail">{{user.Email}}</label>
+      <input [(ngModel)]="newEmail" *ngIf="editingEmail" type="email">
+      <!--  -->
+
+      <button *ngIf="!editingEmail" [style.display]="!editing? 'none' : 'inherit'" (click)="editEmail()" class="p-Edit">Edit</button>
+      <button *ngIf="editingEmail" class="p-Edit" (click)="submitEmail()">
         Done</button>
-        <br>
-        
+      <br>
+
+      <label>Mobile:</label>
+      <label *ngIf="!editingMobile">{{user.Mobile}}</label>
+      <input [(ngModel)]="newMobile" *ngIf="editingMobile" type="text" minlength="8" maxlength="8">
+      <button *ngIf="!editingMobile" [style.display]="!editing? 'none' : 'inherit'" (click)="editMobile()" class="p-Edit">Edit</button>
+      <button *ngIf="editingMobile" class="p-Edit" (click)="submitMobile()">
+        Done</button>
+      <br>
+
+      <label>Address:</label>
+      <button *ngIf="!editingAddress" [style.display]="!editing? 'none' : 'inherit'" (click)="editAddress()" class="p-Edit">Edit</button>
+      <button *ngIf="editingAddress" class="p-Edit" (click)="submitAddress()">
+        Done</button>
+      <br>
+
+      <label *ngIf="!editingAddress">{{user.Street}} </label>
+      <input [(ngModel)]="newStreet" *ngIf="editingAddress" type="text" placeholder="Street"> <br>
+      <label *ngIf="!editingAddress">{{user.Postal}} </label>
+      <input [(ngModel)]="newPostal" *ngIf="editingAddress" type="text" placeholder="Postal Code"> <br>
+      <label *ngIf="!editingAddress">{{user.Unit}} </label>
+      <input [(ngModel)]="newUnit" *ngIf="editingAddress" type="text" placeholder="Unit Number"> <br>
+
+      <label>Followers:</label>
+      <label>have yet to be added</label>
+      <br>
+
+      <label>Bank:</label>
+      <label *ngIf="!editingBank">{{user.Bank}}</label>
+      <input [(ngModel)]="newBank" *ngIf="editingBank" type="text" minlength="8" maxlength="8">
+      <button *ngIf="!editingBank" [style.display]="!editing? 'none' : 'inherit'" (click)="editBank()" class="p-Edit">Edit</button>
+      <button *ngIf="editingBank" class="p-Edit" (click)="submitBank()">
+        Done</button>
+      <br>
+
     </div>
     <button (click)="isEditing()" #editbutton class="p-Button">{{buttontext}}</button>
-</div>
+  </div>
 
-<div class="div-Instruction">
-  <h2 class="text-center"> Chime instructions for chimers </h2>
-  <p>Hello and congratulations on becoming a Chimer! Here at Chime, we believe that in order to build a good relationship between
-    the brands and you, we first need to ensure that you know the basics of becoming a chimer. And therefore we have come
-    up with some simple steps for you to refer to, which we hope would make your experience with Chime a whole lot better.
-    <br><br> 1. Once you see a Job listing from a brand that interest you, simply sign up for the job and it will then appear
-    on your ‘current jobs tab.
-    <br><br> 2. Remember to check the job description for the requirements the brands are looking for. However, you have
-    creative control over the content you post so long as you follow the requirements.<br><br> 3. So feel free to post pictures
-    however you like, as long as it’s before 5 days after you’ve applied for the job. <br><br> 4.Once you have applied for
-    the job, do drop by their location, show them the job listing on your chime app and enjoy your perks. <br><br> 5.If you
-    like the service, then chime it, take a picture and post it. If you don’t, let the brand know at the location and you
-    won’t need to post. 6.Once you post the photo on instagram, share the Instagram link on the Chime app and congrats, you
-    have finished a job just like that!
-  </p>
+  <div class="div-Instruction">
+    <h2 class="text-center"> Chime instructions for chimers </h2>
+    <p>Hello and congratulations on becoming a Chimer! Here at Chime, we believe that in order to build a good relationship
+      between the brands and you, we first need to ensure that you know the basics of becoming a chimer. And therefore we
+      have come up with some simple steps for you to refer to, which we hope would make your experience with Chime a whole
+      lot better.
+      <br><br> 1. Once you see a Job listing from a brand that interest you, simply sign up for the job and it will then
+      appear on your ‘current jobs tab.
+      <br><br> 2. Remember to check the job description for the requirements the brands are looking for. However, you have
+      creative control over the content you post so long as you follow the requirements.<br><br> 3. So feel free to post
+      pictures however you like, as long as it’s before 5 days after you’ve applied for the job. <br><br> 4.Once you have
+      applied for the job, do drop by their location, show them the job listing on your chime app and enjoy your perks. <br><br>      5.If you like the service, then chime it, take a picture and post it. If you don’t, let the brand know at the location
+      and you won’t need to post. 6.Once you post the photo on instagram, share the Instagram link on the Chime app and congrats,
+      you have finished a job just like that!
+    </p>
 
-</div>
+  </div>
 
 </div>

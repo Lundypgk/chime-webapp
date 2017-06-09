@@ -27,10 +27,11 @@ import { PaymentService } from "app/services/payment.service";
 import { chimerProfileComponent } from "./components/home/chimer-profile/chimer-profile.component";
 import { InstagramComponent } from './components/home/instagram/instagram.component';
 import { InstagramService } from "app/services/instagram.service";
+import { LoginRedirectGuard } from "app/guard/login-redirect.guard";
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent, canActivate: [LoginRedirectGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [LoginRedirectGuard] },
   { path: 'brand', component: BrandHomeComponent, canActivate: [BrandLoginGuard] },
   { path: 'brand/listing/:id', component: BrandHomeDetailComponent, canActivate: [BrandLoginGuard] },
   { path: 'brand/add-listing', component: BrandAddListingComponent, canActivate: [BrandLoginGuard] },
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule.forRoot(appRoutes),
+    // RouterModule.forRoot(appRoutes, { useHash: true }),
     SimpleNotificationsModule.forRoot()
   ],
   providers: [ChimerListingService,
@@ -73,7 +75,8 @@ const appRoutes: Routes = [
     PaymentService,
     InstagramService,
     ChimerLoginGuard,
-    BrandLoginGuard],
+    BrandLoginGuard,
+    LoginRedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

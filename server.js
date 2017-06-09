@@ -73,6 +73,12 @@ app.use('/payment', payment);
 app.use('/instagram', instagram);
 
 //Index Route
-app.get('/', (req, res) => {
-  res.send('Invalid Endpoint');
+// app.all('*', (req, res) => {
+//   console.log(distDir + 'index.html');
+//   res.sendFile(distDir + 'index.html')
+// });
+
+// Default Route
+app.use(function (req, res) {
+  res.sendFile(distDir + 'index.html')
 });

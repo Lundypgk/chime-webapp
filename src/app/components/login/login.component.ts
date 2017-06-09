@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationsService } from "angular2-notifications";
+import { AuthService } from "app/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { NotificationsService } from "angular2-notifications";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  jwt: {}
   busy: Subscription;
   loginForm: FormGroup;
   options = {
@@ -24,9 +25,14 @@ export class LoginComponent implements OnInit {
     private loginService: UserLoginService,
     private route: ActivatedRoute,
     private router: Router,
-    private _service: NotificationsService) { }
+    private _service: NotificationsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.jwt = localStorage.getItem('wearechime');
+    // this.authService.isUserLoggedIn(this.jwt).subscribe(data => {
+    //   console.log(data);
+    // });
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: [''],
