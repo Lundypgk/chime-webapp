@@ -1,3 +1,12 @@
 <div>
   <img src="../../../assets/Images/instagram-logo.png" alt="" class="instagram" (click)="onAuth()">
+  <div> ID : {{response?.data.id}} </div>
+  <div> USERNAME : {{response?.data.username}} </div>
+  <div> FULL NAME : {{response?.data.full_name}} </div>
+  <div> PROFILE LINK : {{response?.data.profile_picture}} </div>
+  <div> BIO : {{response?.data.bio}} </div>
+  <div> WEBSITE : {{response?.data.website}} </div>
+  <div> MEDIA : {{response?.data.counts.media}} </div>
+  <div> FOLLOWS : {{response?.data.counts.follows}} </div>
+  <div> FOLLOWED BY : {{response?.data.counts.followed_by}} </div>
 </div>
