@@ -1,3 +1,4 @@
+'use strict';
 class chimerListing {
   constructor(chimerId, listingId, jobStatus, perks, instaUrl) {
     this.chimerId = chimerId;

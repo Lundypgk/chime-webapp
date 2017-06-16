@@ -1,3 +1,4 @@
+'use strict';
 //Import
 let express = require('express'),
   moment = require('moment'),
@@ -257,7 +258,7 @@ router.put('/updateListing', (req, res, next) => {
   });
 
   function verifyToken(callback) {
-    
+
     jwt.verify(req.body.update.jwt, config.secret, function (err, decoded) {
       if (err) {
         callback(err);
@@ -268,12 +269,12 @@ router.put('/updateListing', (req, res, next) => {
   };
 
   function updateListing(decoded, callback) {
-    
+
     let id = new ObjectID(req.body.update._id);
-     db.collection(collection.listingCollection).update({
-       _id: id
-     }, {
-       $set: {
+    db.collection(collection.listingCollection).update({
+      _id: id
+    }, {
+      $set: {
         description: req.body.update.description,
         perks: req.body.update.perks,
         requirements: req.body.update.requirements

@@ -1,3 +1,4 @@
+'use strict';
 //Import
 let express = require('express'),
   moment = require('moment'),
@@ -50,7 +51,7 @@ router.get('/retrieveChimerDetail', (req, res, next) => {
   function retrieveData(decoded, callback) {
     let id = new ObjectID(decoded.chimerId)
     db.collection(collection.chimerCollection).find({
-      _id : id
+      _id: id
     }).toArray().then(function (listing) {
       //If there is any listing
       if (listing.length >= 1) {
@@ -324,8 +325,9 @@ router.put('/updateProfile', (req, res, next) => {
   function updateProfile(decoded, callback) {
     let id = new ObjectID(decoded.chimerId)
     console.log(req.body.jwt);
-    db.collection(collection.chimerCollection).update({ _id: id}
-    ,{
+    db.collection(collection.chimerCollection).update({
+      _id: id
+    }, {
       $set: {
         Email: req.body.Email,
         Street: req.body.Street,
@@ -334,7 +336,7 @@ router.put('/updateProfile', (req, res, next) => {
         Mobile: req.body.Mobile,
         Bank: req.body.Bank,
         lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
-    
+
       }
     }).then(function (result) {
       callback(null, result)

@@ -1,3 +1,4 @@
+'use strict';
 //Import
 let express = require('express'),
   router = express.Router();

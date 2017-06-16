@@ -1,12 +1,13 @@
+'use strict';
 class Listing {
 
-    constructor(description, budget, perks, requirements, brandId) {
-        this.description = description;
-        this.budget = budget;
-        this.perks = perks;
-        this.requirements = requirements;
-        this.brandId = brandId;
-    }
+  constructor(description, budget, perks, requirements, brandId) {
+    this.description = description;
+    this.budget = budget;
+    this.perks = perks;
+    this.requirements = requirements;
+    this.brandId = brandId;
+  }
 }
 module.exports = Listing;
 
