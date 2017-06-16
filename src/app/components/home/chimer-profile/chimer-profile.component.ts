@@ -247,4 +247,11 @@ export class chimerProfileComponent implements OnInit{
 
    //End of Editing Address
 
+   //start of update follower
+
+
+
+   //end of follower
+
+
 }

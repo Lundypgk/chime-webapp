@@ -345,6 +345,63 @@ router.put('/updateProfile', (req, res, next) => {
 });
 
 
+/******************************************************
+Update Followers
+*******************************************************/
+
+router.put('/updateFollowers', (req, res, next) => {
+  db = req.db;
+  jwt = req.jwt;
+
+  async.waterfall([
+    verifyToken,
+    updateProfile,
+  ], function (err, result) {
+    res.statusCode = 200;
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      })
+    } else {
+      res.json({
+        success: true,
+        results: result
+      })
+    }
+  });
+
+  function verifyToken(callback) {
+    console.log(req.body);
+    jwt.verify(req.body.jwt, config.secret, function (err, decoded) {
+      if (err) {
+        callback(err);
+       console.log("decoded error")
+      } else {
+        callback(null, decoded);
+        console.log("decoded success");
+      }
+    });
+  };
+
+  function updateProfile(decoded, callback) {
+    console.log(decoded);
+    let id = new ObjectID(decoded.chimerId)
+   
+    db.collection(collection.chimerCollection).update({
+      _id: id
+    }, {
+      $set: {
+        followers: req.body.follower,
+        lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
+
+      }
+    }).then(function (result) {
+      callback(null, result)
+    })
+  }
+});
+
 
 
 

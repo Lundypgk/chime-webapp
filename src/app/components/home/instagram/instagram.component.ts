@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InstagramService } from "app/services/instagram.service";
 import { ActivatedRoute } from "@angular/router";
+import { ChimerListingService } from '../../../services/chimer-listing.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-instagram',
@@ -10,9 +12,14 @@ import { ActivatedRoute } from "@angular/router";
 export class InstagramComponent implements OnInit {
   response: any;
   code: String;
+  busy: Subscription;
+  jwt : string;
+  followers: string;
+  update : any = {};
 
   constructor(private instagramService: InstagramService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private _ChimerListing: ChimerListingService) { }
 
   ngOnInit() {
     this.code = this.activatedRoute.snapshot.queryParams['code'];
@@ -22,6 +29,20 @@ export class InstagramComponent implements OnInit {
 
         console.log("response " + this.response);
         console.log("result " + result);
+        console.log("result " + this.response.data.counts.followed_by);
+        this.update.follower = this.response.data.counts.followed_by;
+        this.update.jwt = localStorage.getItem("wearechime");
+        console.log(this.update);
+        this.busy = this._ChimerListing.updateFollowers(this.update).subscribe(data => {
+            if (data.success) {
+                console.log("done");
+                window.location.href="http://localhost:4200/chimer";
+            }
+            else {
+                //No data
+                console.log("ada error");
+            }
+            });
       });
     }
 

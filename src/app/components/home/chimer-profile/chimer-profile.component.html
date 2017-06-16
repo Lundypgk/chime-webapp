@@ -40,7 +40,11 @@
       <input [(ngModel)]="newUnit" *ngIf="editingAddress" type="text" placeholder="Unit Number"> <br>
 
       <label>Followers:</label>
-      <label>have yet to be added</label>
+      <label>{{user.followers}}</label>
+      <app-instagram [style.display]="!editing? 'none' : 'inherit'" class="p-Edit"></app-instagram>
+     <!-- <button [style.display]="!editing? 'none' : 'inherit'" (click)="editfollower()" class="p-Edit">Update</button> -->
+     
+
       <br>
 
       <label>Bank:</label>
