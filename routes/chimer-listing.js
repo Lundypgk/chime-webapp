@@ -329,11 +329,11 @@ router.put('/updateProfile', (req, res, next) => {
       _id: id
     }, {
       $set: {
-        Email: req.body.Email,
-        Street: req.body.Street,
-        Postal: req.body.Postal,
-        Unit: req.body.Unit,
-        Mobile: req.body.Mobile,
+        email: req.body.email,
+        street: req.body.street,
+        postal: req.body.postal,
+        unit: req.body.unit,
+        mobileNo: req.body.mobileNo,
         Bank: req.body.Bank,
         lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
 

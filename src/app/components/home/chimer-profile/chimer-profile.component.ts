@@ -44,9 +44,11 @@ export class chimerProfileComponent implements OnInit{
         this.busy = this._ChimerListing.retrieveChimerDetail(this.jwt).subscribe(data =>{
             if (data.success) {
                 this.Data = data.results;
+                console.log(this.Data);
             }
             else
             {
+                             console.log("some shit be up");
                //null
             }
         });
@@ -72,7 +74,7 @@ export class chimerProfileComponent implements OnInit{
 
    submitEmail(){
        this.editingEmail = !this.editEmail;
-       this.oldEmail = this.Data[0].Email;
+       this.oldEmail = this.Data[0].email;
 
        if ((this.oldEmail == this.newEmail) || (this.newEmail == null || "" || undefined ) ) //check for difference
        {
@@ -83,7 +85,7 @@ export class chimerProfileComponent implements OnInit{
        {    
          this.updates = this.Data[0];
          this.updates.jwt = this.jwt;
-         this.updates.Email = this.newEmail;
+         this.updates.email = this.newEmail;
          console.log(this.updates);
          this.busy = this._ChimerListing.updateProfile(this.updates).subscribe(data => {
             if (data.success) {
@@ -106,7 +108,7 @@ export class chimerProfileComponent implements OnInit{
 
    submitMobile(){  //not done changing this shit yet brrb
        this.editingMobile = !this.editingMobile;
-       this.oldMobile = this.Data[0].Mobile;
+       this.oldMobile = this.Data[0].mobileNo;
 
        if ((this.oldMobile == this.newMobile) || (this.newMobile == null || "" || undefined ) ) //check for difference
        {
@@ -117,7 +119,7 @@ export class chimerProfileComponent implements OnInit{
        {    
          this.updates = this.Data[0];
          this.updates.jwt = this.jwt;
-         this.updates.Mobile = this.newMobile;
+         this.updates.mobileNo = this.newMobile;
          console.log(this.updates);
          this.busy = this._ChimerListing.updateProfile(this.updates).subscribe(data => {
             if (data.success) {
@@ -157,7 +159,8 @@ export class chimerProfileComponent implements OnInit{
                 console.log("done");
             }
             else {
-                //No data
+                //No data up
+   
             }
             });
        }
@@ -171,9 +174,9 @@ export class chimerProfileComponent implements OnInit{
    }
    submitAddress(){
         this.editingAddress = !this.editingAddress;
-        this.oldPostal = this.Data[0].Postal;
-        this.oldStreet = this.Data[0].Street;
-        this.oldUnit   = this.Data[0].Unit;
+        this.oldPostal = this.Data[0].postal;
+        this.oldStreet = this.Data[0].street;
+        this.oldUnit   = this.Data[0].unit;
 
          if ((this.oldPostal == this.newPostal) || (this.newPostal == null || "" || undefined ) ) //check for difference
        {
@@ -185,7 +188,7 @@ export class chimerProfileComponent implements OnInit{
          this.updates = this.Data[0];
          this.updates.jwt = this.jwt;
         
-         this.updates.Postal = this.newPostal;
+         this.updates.postal = this.newPostal;
          console.log(this.updates);
          this.busy = this._ChimerListing.updateProfile(this.updates).subscribe(data => {
             if (data.success) {
@@ -205,7 +208,7 @@ export class chimerProfileComponent implements OnInit{
        {
          this.updates = this.Data[0];
          this.updates.jwt = this.jwt;
-         this.updates.Street = this.newStreet;
+         this.updates.street = this.newStreet;
         
          console.log(this.updates);
          this.busy = this._ChimerListing.updateProfile(this.updates).subscribe(data => {
@@ -228,7 +231,7 @@ export class chimerProfileComponent implements OnInit{
          this.updates = this.Data[0];
          this.updates.jwt = this.jwt;
         
-         this.updates.Unit = this.newUnit;
+         this.updates.unit = this.newUnit;
        
          console.log(this.updates);
          this.busy = this._ChimerListing.updateProfile(this.updates).subscribe(data => {

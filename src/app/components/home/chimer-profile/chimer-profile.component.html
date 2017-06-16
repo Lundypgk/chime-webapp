@@ -5,11 +5,11 @@
     <div class="cProfile" *ngFor="let user of Data">
       <!--  -->
       <label>Name:</label>
-      <label>{{user.FirstName}} {{user.LastName}}</label>
+      <label>{{user.firstName}} {{user.lastName}}</label>
       <br>
 
       <label>Email:</label>
-      <label *ngIf="!editingEmail">{{user.Email}}</label>
+      <label *ngIf="!editingEmail">{{user.email}}</label>
       <input [(ngModel)]="newEmail" *ngIf="editingEmail" type="email">
       <!--  -->
 
@@ -19,7 +19,7 @@
       <br>
 
       <label>Mobile:</label>
-      <label *ngIf="!editingMobile">{{user.Mobile}}</label>
+      <label *ngIf="!editingMobile">{{user.mobileNo}}</label>
       <input [(ngModel)]="newMobile" *ngIf="editingMobile" type="text" minlength="8" maxlength="8">
       <button *ngIf="!editingMobile" [style.display]="!editing? 'none' : 'inherit'" (click)="editMobile()" class="p-Edit">Edit</button>
       <button *ngIf="editingMobile" class="p-Edit" (click)="submitMobile()">
@@ -32,11 +32,11 @@
         Done</button>
       <br>
 
-      <label *ngIf="!editingAddress">{{user.Street}} </label>
+      <label *ngIf="!editingAddress">{{user.street}} </label>
       <input [(ngModel)]="newStreet" *ngIf="editingAddress" type="text" placeholder="Street"> <br>
-      <label *ngIf="!editingAddress">{{user.Postal}} </label>
+      <label *ngIf="!editingAddress">{{user.postal}} </label>
       <input [(ngModel)]="newPostal" *ngIf="editingAddress" type="text" placeholder="Postal Code"> <br>
-      <label *ngIf="!editingAddress">{{user.Unit}} </label>
+      <label *ngIf="!editingAddress">{{user.unit}} </label>
       <input [(ngModel)]="newUnit" *ngIf="editingAddress" type="text" placeholder="Unit Number"> <br>
 
       <label>Followers:</label>
@@ -44,7 +44,7 @@
       <br>
 
       <label>Bank:</label>
-      <label *ngIf="!editingBank">{{user.Bank}}</label>
+      <label *ngIf="!editingBank">{{user.bank}}</label>
       <input [(ngModel)]="newBank" *ngIf="editingBank" type="text" minlength="8" maxlength="8">
       <button *ngIf="!editingBank" [style.display]="!editing? 'none' : 'inherit'" (click)="editBank()" class="p-Edit">Edit</button>
       <button *ngIf="editingBank" class="p-Edit" (click)="submitBank()">
