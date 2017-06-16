@@ -15,6 +15,11 @@ export class BrandHomeComponent implements OnInit {
  // test:string;
   //store updates
     updates:any = {} ;
+    editing:boolean =  false;
+
+  toggleEdit() {
+    this.editing = !this.editing;
+  }
 
   editJob(perk , require, desc){
     this.updates = this.listings[0];
@@ -25,6 +30,7 @@ export class BrandHomeComponent implements OnInit {
     console.log(this.updates);
     this.busy = this.listingService.UpdateListing(this.updates).subscribe(data => {
       if (data.success) {
+        this.editing= !this.editing;
        location.reload(); 
       }
       else

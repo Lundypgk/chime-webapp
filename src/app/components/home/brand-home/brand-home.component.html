@@ -4,35 +4,39 @@
     <img class="dp-list" src="../../assets/Images/tqk.jpg">
     <label [hidden]=true> {{listing._id}} </label>
   </div>
-  <div class="status">
+
+  <div class="div-right">
+    <label>Campaign Name:<span class="color" *ngIf="!editing"> The Quay Kitchen</span><input [style.display]="!editing? 'none' : 'inherit'" value="The Quay kitchen" ></label>
+    
+
+    <label>Perks: <br /><span class="color"  *ngIf="!editing">{{listing.perks}}</span> <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.perks}} #perk ></label>
+   
+
+
+
+    <label>Requirements: <br />
+    <span class="color"  *ngIf="!editing">{{listing.requirements}}</span>
+    <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.requirements}} #require></label>
+    
+    <label> Description: <br /><span class="color"  *ngIf="!editing">{{listing.description}}</span> <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.description}} #desc></label>
+   
+    
+    <label>Budget: <span class="color">{{listing.budget}}</span></label>
+   
+    
+  </div>
+    <div class="status">
     <button (click)="onPayment()"> Unverified job
     </button>
     <br>
     <button (click)="onListing(listing)"> View job
     </button><br>
  
- 
-     <button (click)="editJob(perk.value, require.value, desc.value)"> Edit job
+     <button *ngIf="!editing" (click)="toggleEdit()"> Edit job </button>
+    
+     <button *ngIf="editing" (click)="editJob(perk.value, require.value, desc.value)"> Submit
     </button>
  
 
-  </div>
-  <div class="div-right">
-    <label>Campaign Name:<span class="color"> The Quay Kitchen</span></label>
-    <input value="The Quay kitchen" >
-
-    <label>Perks: <br /><span class="color">{{listing.perks}}</span></label>
-    <input value={{listing.perks}} #perk >
-
-
-
-    <label>Requirements: <br /><span class="color">{{listing.requirements}}</span></label>
-    <input value={{listing.requirements}} #require>
-    <label> Description: <br /><span class="color">{{listing.description}}</span></label>
-    <input value={{listing.description}} #desc>
-    
-    <label>Budget: <span class="color">{{listing.budget}}</span></label>
-    <input value={{listing.budget}} >
-    
   </div>
 </div>

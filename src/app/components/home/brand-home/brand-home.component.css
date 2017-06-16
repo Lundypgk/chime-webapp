@@ -18,6 +18,7 @@
 }
 
 
+
 /*-------MEDIA QUERIES-----------*/
 
 @media only screen and (max-width: 1024px) {
@@ -105,14 +106,15 @@ label {
 }
 
 .div-right {
-  width: 80%;
+  width: 60%;
   float: left;
+  margin: 1% 0%;
 }
 
 .div-list {
   display: block;
   background: #f9f9f9;
-  box-shadow: 5px 5px 2.5px #999;
+     box-shadow: 2px 3px 17.5px #999;
   width: 80%;
   margin-left: 10%;
   padding: 10px;
@@ -135,5 +137,25 @@ label {
 .status {
   float: right;
   border-radius: 5px;
-  border: 2px solid red;
+  
+}
+.status button {
+  width: 100%;
+  border-radius: 25px;
+  display: inline-block;
+  color: #fff;
+  padding: 0px 20px 0 20px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #000;
+  background: #FACB1B;
+  border: 1px solid #FACB1B;
+  border-radius: 20px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  /* margin-top: 50px; */
+  margin-bottom: 1%;
 }
