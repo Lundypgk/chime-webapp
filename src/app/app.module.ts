@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusyModule } from 'angular2-busy';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { DialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     // RouterModule.forRoot(appRoutes, { useHash: true }),
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    DialogModule
   ],
   providers: [ChimerListingService,
     BrandListingService,
