@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Message } from "app/message";
 
 @Component({
   selector: 'app-brand-add-listing',
@@ -10,9 +11,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./brand-add-listing.component.css']
 })
 export class BrandAddListingComponent implements OnInit {
+
   listingForm: FormGroup;
   jwt: String;
   busy: Subscription;
+  msgs: Message[];
+
+  uploadedFiles: any[] = [];
 
 
   constructor(private formBuilder: FormBuilder,
@@ -47,5 +52,16 @@ export class BrandAddListingComponent implements OnInit {
         }
       });
     }
+  }
+
+
+
+  onUpload(event) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+    this.msgs = [];
+    this.msgs.push({ severity: 'info', summary: 'File Uploaded', detail: '' });
   }
 }
