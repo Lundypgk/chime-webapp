@@ -52,8 +52,9 @@ export class PaymentComponent implements OnInit {
                   pauseOnHover: false,
                   clickToClose: true
                 }
-              )
-              location.reload;
+              );
+              instance.teardown();
+              // location.reload;
             }
           })
         });

@@ -4,39 +4,46 @@
     <img class="dp-list" src="../../assets/Images/tqk.jpg">
     <label [hidden]=true> {{listing._id}} </label>
   </div>
-
   <div class="div-right">
     <label>Campaign Name:<span class="color" *ngIf="!editing"> The Quay Kitchen</span><input [style.display]="!editing? 'none' : 'inherit'" value="The Quay kitchen" ></label>
-    
-
     <label>Perks: <br /><span class="color"  *ngIf="!editing">{{listing.perks}}</span> <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.perks}} #perk ></label>
-   
-
-
-
     <label>Requirements: <br />
     <span class="color"  *ngIf="!editing">{{listing.requirements}}</span>
     <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.requirements}} #require></label>
-    
+
     <label> Description: <br /><span class="color"  *ngIf="!editing">{{listing.description}}</span> <input [style.display]="!editing? 'none' : 'inherit'" value={{listing.description}} #desc></label>
-   
-    
+
+
     <label>Budget: <span class="color">{{listing.budget}}</span></label>
-   
-    
+
+
   </div>
-    <div class="status">
+  <div class="status">
     <button (click)="onPayment()"> Unverified job
     </button>
     <br>
     <button (click)="onListing(listing)"> View job
     </button><br>
- 
-     <button *ngIf="!editing" (click)="toggleEdit()"> Edit job </button>
-    
-     <button *ngIf="editing" (click)="editJob(perk.value, require.value, desc.value)"> Submit
+
+    <button *ngIf="!editing" (click)="toggleEdit()"> Edit job </button>
+
+    <button *ngIf="editing" (click)="editJob(perk.value, require.value, desc.value)"> Submit
     </button>
- 
+
 
   </div>
 </div>
+<!--<div *ngIf="payment">
+  <app-payment></app-payment>
+</div>-->
+<p-dialog header="Payment" [(visible)]="display" modal="modal" width="500" [responsive]="true" [contentStyle]="{'overflow':'visible'}">
+  <app-payment></app-payment>
+  <!--<p-footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+      <button type="button" pButton icon="fa-check" (click)="display=false" label="Yes"></button>
+    </div>
+  </p-footer>-->
+</p-dialog>
+
+<button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
