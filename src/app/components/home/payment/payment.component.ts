@@ -8,7 +8,6 @@ import { NotificationsService } from "angular2-notifications";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
   dropin = require('braintree-web-drop-in');
   clientToken: String;
   payload: {};
@@ -33,15 +32,14 @@ export class PaymentComponent implements OnInit {
     }, (err, instance) => {
       //Listen to the payment method 
       instance.on('paymentMethodRequestable', (event) => {
-        console.log(event.type); // The type of Payment Method, e.g 'CreditCard', 'PayPalAccount'.
+
         //Initate the payment
-        instance.requestPaymentMethod((err, payload) => {
+        instance.requestPaymentMethod((err, data) => {
           if (err) {
             console.log(err)
           }
-          console.log("payload" + payload.nonce)
-          payload.nonce = payload.nonce;
-          this.paymentService.checkOut(payload).subscribe(data => {
+          data.nonce = data.nonce;
+          this.paymentService.checkOut(data).subscribe(data => {
             console.log(data.success);
             if (data.success) {
               this._service.success(
