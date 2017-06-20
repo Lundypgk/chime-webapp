@@ -36,14 +36,8 @@
 <!--<div *ngIf="payment">
   <app-payment></app-payment>
 </div>-->
-<p-dialog header="Payment" [(visible)]="display" modal="modal" width="500" [responsive]="true" [contentStyle]="{'overflow':'visible'}">
+<!--<p-dialog [(visible)]="display" [modal]="true" [responsive]="true">
   <app-payment></app-payment>
-  <!--<p-footer>
-    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-      <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
-      <button type="button" pButton icon="fa-check" (click)="display=false" label="Yes"></button>
-    </div>
-  </p-footer>-->
-</p-dialog>
-
-<button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
+</p-dialog>-->
+<ng2-dynamic-dialog-modal></ng2-dynamic-dialog-modal>
+<button type="button" (click)="onPayment()">Make Payment</button>

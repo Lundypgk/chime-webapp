@@ -6,8 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusyModule } from 'angular2-busy';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { DialogModule } from 'primeng/primeng';
-import { FileUploadModule } from 'primeng/primeng';
+import { Ng2DynamicDialogModule } from 'ng2-dynamic-dialog';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -69,8 +68,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     // RouterModule.forRoot(appRoutes, { useHash: true }),
     SimpleNotificationsModule.forRoot(),
-    DialogModule,
-    FileUploadModule
+    Ng2DynamicDialogModule,
   ],
   providers: [ChimerListingService,
     BrandListingService,
@@ -81,6 +79,7 @@ const appRoutes: Routes = [
     ChimerLoginGuard,
     BrandLoginGuard,
     LoginRedirectGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PaymentComponent],
 })
 export class AppModule { }
