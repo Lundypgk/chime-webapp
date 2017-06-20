@@ -1,8 +1,11 @@
 import { Router } from '@angular/router';
 import { BrandListingService } from '../../../services/brand-listing.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DialogModule } from 'primeng/primeng';
+import { Ng2DynamicDialogComponent } from 'ng2-dynamic-dialog';
+import { Ng2DynamicDialogContent } from 'ng2-dynamic-dialog';
+import { Ng2DynamicDialogStyle } from 'ng2-dynamic-dialog';
+import { PaymentComponent } from "app/components/home/payment/payment.component";
 
 @Component({
   selector: 'app-brand-home',
@@ -20,9 +23,12 @@ export class BrandHomeComponent implements OnInit {
   payment: boolean = false;
   display: boolean = false;
 
+  @ViewChild(Ng2DynamicDialogComponent)
+  private modalDialog: Ng2DynamicDialogComponent;
 
   constructor(private listingService: BrandListingService,
-    private router: Router) { }
+    private router: Router) {
+  }
 
   ngOnInit() {
     this.jwt = localStorage.getItem('wearechime');
@@ -65,10 +71,23 @@ export class BrandHomeComponent implements OnInit {
   onPayment() {
     // this.router.navigate(['payment']);
     this.payment = true;
-  }
+    let dialogStyle = new Ng2DynamicDialogStyle();
+    dialogStyle.background = 'ng2-dynamic-dialog-background';
+    dialogStyle.dialog = 'ng2-dynamic-dialog-dialogBox';
+    dialogStyle.title = 'ng2-dynamic-dialog-samples-custom-style-title';
+    // Set it
+    this.modalDialog.setStyle(dialogStyle);
 
-  showDialog() {
-    this.display = true;
+    // Set the content
+    let dialogContent = new Ng2DynamicDialogContent();
+    dialogContent.title = 'Payment';
+    dialogContent.height = 800;
+    dialogContent.width = 800;
+
+    // Pass through the type of component you wish to be rendered inside the dialog
+    dialogContent.componentContent = PaymentComponent;
+
+    this.modalDialog.show(dialogContent);
   }
 }
 

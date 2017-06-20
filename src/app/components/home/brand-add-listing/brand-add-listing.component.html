@@ -1,7 +1,5 @@
 <app-brand-navbar></app-brand-navbar>
-<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
-
-
+<!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>-->
 <form [formGroup]="listingForm" (ngSubmit)="onSubmit()" [ngBusy]="{busy: busy, message: 'Saving Data ...', backdrop: true, delay: 200, minDuration: 600}">
   <div class="form-group">
     <label for="Description">Description</label>

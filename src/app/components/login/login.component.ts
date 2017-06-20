@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit {
           }
           else {
             // alert("No such user");
+            console.log("chimer")
+
             this._service.error(
               'Error',
               'No such user has been found',
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/brand']);
           }
           else {
+            console.log("brand");
             this._service.error(
               'Error',
               'No such user has been found',
@@ -97,6 +100,7 @@ export class LoginComponent implements OnInit {
     }
 
     else if (this.loginForm.value.email == "" || this.loginForm.value.password == "") {
+      console.log("else if")
       this._service.error(
         'Error',
         'Please enter your credentials',
