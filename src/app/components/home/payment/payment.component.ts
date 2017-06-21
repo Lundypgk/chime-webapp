@@ -13,12 +13,14 @@ export class PaymentComponent implements OnInit {
   dropin = require('braintree-web-drop-in');
   clientToken: String;
   payload: any = {};
+  jwt: String;
   busy: Subscription;
 
   constructor(private paymentService: PaymentService,
     private _service: NotificationsService) { }
 
   ngOnInit() {
+    this.jwt = localStorage.getItem('wearechime');
     this.paymentService.retrieveToken().subscribe(data => {
       this.clientToken = data;
       this.dropInPayment();
@@ -42,22 +44,6 @@ export class PaymentComponent implements OnInit {
             console.log(err)
           }
           this.payload.nonce = data.nonce;
-          // this.paymentService.checkOut(this.payload).subscribe(data => {
-          //   console.log(data.success);
-          //   if (data.success) {
-          //     this._service.success(
-          //       'Success !',
-          //       'Payment Success',
-          //       {
-          //         timeOut: 3000,
-          //         pauseOnHover: false,
-          //         clickToClose: true
-          //       }
-          //     );
-          //     instance.teardown();
-          //     // location.reload;
-          //   }
-          // })
         });
       });
     });
@@ -66,7 +52,8 @@ export class PaymentComponent implements OnInit {
   onPayment() {
     if (!this.isEmpty(this.payload)) {
       this.isPaid = true;
-      this.busy = this.paymentService.checkOut(this.payload).subscribe(data => {
+      this.busy = this.paymentService.checkOut(this.payload, this.jwt).subscribe(data => {
+        console.log(data);
         if (data.success) {
           this._service.success(
             'Success !',

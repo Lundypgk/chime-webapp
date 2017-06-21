@@ -177,4 +177,5 @@ label {
 .ng2-dynamic-dialog-dialogBox {
   border-width: 5px;
   border-color: #FACB1B;
+  padding: 0px;
 }

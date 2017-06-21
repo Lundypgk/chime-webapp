@@ -75,14 +75,15 @@ export class BrandHomeComponent implements OnInit {
     dialogStyle.background = 'ng2-dynamic-dialog-background';
     dialogStyle.dialog = 'ng2-dynamic-dialog-dialogBox';
     dialogStyle.title = 'ng2-dynamic-dialog-samples-custom-style-title';
+    dialogStyle.buttonClose.image = '../../assets/Images/close-button.png';
+
     // Set it
     this.modalDialog.setStyle(dialogStyle);
 
     // Set the content
     let dialogContent = new Ng2DynamicDialogContent();
-    dialogContent.title = 'Payment';
-    dialogContent.height = 800;
-    dialogContent.width = 800;
+    dialogContent.height = 570;
+    dialogContent.width = 500;
 
     // Pass through the type of component you wish to be rendered inside the dialog
     dialogContent.componentContent = PaymentComponent;
