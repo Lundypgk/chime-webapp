@@ -1,8 +1,10 @@
 <div class="c-wrapper">
   <div class="div-profile">
     <h2 class="text-center">Your Profile:</h2>
-    <!--<img class="cDP" src="../../../assets/Images/anythingforshane.png">-->
-    <div class="cProfile" *ngFor="let user of Data">
+    <div *ngFor="let user of Data">
+       <img class="cDP" src={{user.profpic}}>
+      <div class="cProfile" >
+      
       <!--  -->
       <label>Name:</label>
       <label>{{user.firstName}} {{user.lastName}}</label>
@@ -48,13 +50,13 @@
       <br>
 
       <label>Bank:</label>
-      <label *ngIf="!editingBank">{{user.bank}}</label>
+      <label *ngIf="!editingBank">{{user.Bank}}</label>
       <input [(ngModel)]="newBank" *ngIf="editingBank" type="text" minlength="8" maxlength="8">
       <button *ngIf="!editingBank" [style.display]="!editing? 'none' : 'inherit'" (click)="editBank()" class="p-Edit">Edit</button>
       <button *ngIf="editingBank" class="p-Edit" (click)="submitBank()">
         Done</button>
       <br>
-
+    </div>
     </div>
     <button (click)="isEditing()" #editbutton class="p-Button">{{buttontext}}</button>
   </div>

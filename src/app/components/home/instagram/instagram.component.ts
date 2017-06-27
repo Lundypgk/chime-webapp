@@ -30,7 +30,9 @@ export class InstagramComponent implements OnInit {
         console.log("response " + this.response);
         console.log("result " + result);
         console.log("result " + this.response.data.counts.followed_by);
+        console.log(this.response.data.profile_picture);
         this.update.follower = this.response.data.counts.followed_by;
+        this.update.profPic =  this.response.data.profile_picture;
         this.update.jwt = localStorage.getItem("wearechime");
         console.log(this.update);
         this.busy = this._ChimerListing.updateFollowers(this.update).subscribe(data => {

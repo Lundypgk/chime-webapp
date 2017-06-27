@@ -393,6 +393,7 @@ router.put('/updateFollowers', (req, res, next) => {
     }, {
       $set: {
         followers: req.body.follower,
+        profpic : req.body.profPic,
         lastUpdated: moment().format('MMMM Do YYYY, h:mm:ss a')
 
       }
