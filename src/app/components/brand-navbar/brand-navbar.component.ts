@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { NotificationsService } from "angular2-notifications";
 
 @Component({
   selector: 'app-brand-navbar',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    private _service: NotificationsService) { }
 
   ngOnInit() {
   }
 
+  onLogOut() {
+    localStorage.removeItem("wearechime");
+    this.router.navigate(['/login']);
+    this._service.success(
+      'You Have Logged Out', '',
+      {
+        timeOut: 3000,
+        pauseOnHover: false,
+        clickToClose: true
+      }
+    )
+  }
 }

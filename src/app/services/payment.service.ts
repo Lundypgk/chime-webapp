@@ -15,10 +15,10 @@ export class PaymentService {
             .map(res => res.json());
     };
 
-    checkOut(nonce) {
+    checkOut(nonce, jwt) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(GlobalVariable.serverUrl + '/payment/checkout', nonce, headers)
+        return this.http.post(GlobalVariable.serverUrl + '/payment/checkout', { nonce, jwt }, headers)
             .map(res => res.json());
     };
 }
